@@ -1,49 +1,38 @@
 (let ((default-directory "~/.emacs.d/plugins/"))
-	(normal-top-level-add-to-load-path '("."))
-	(normal-top-level-add-subdirs-to-load-path))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1/")
 
 (load "server")
 (unless (server-running-p) (server-start))
-
-(setq inhibit-splash-screen t)
-
-(push "*Help*" special-display-buffer-names)
-(push "*Backtrace*" special-display-buffer-names)
-(push ".*sldb.*" special-display-regexps)
 
 (require 'package)
 (add-to-list 'package-archives
   '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-(require 'paredit)
-(require 'clojure-mode)
-
-(add-hook 'slime-mode-hook
-  (lambda ()
-  (require 'midje-mode)
-  (midje-mode 1)))
-
-(add-hook 'clojure-mode-hook
-	  (lambda ()
-	    (paredit-mode 1)))
-
-(setq scroll-step 1)
 (require 'color-theme)
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
      (color-theme-desert)))
 
+(setq inhibit-splash-screen t)
+(setq scroll-step 1)
 (menu-bar-mode 1)
 (set-default-font "Consolas 10")
-
-(require 'linum)
+(require 'linum) 
 (global-linum-mode 1)
-
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode 1)
+(global-hl-line-mode 1)
+(require 'git-emacs)
+(require 'yasnippet)
+(yas/global-mode 1)
+(require 'auto-highlight-symbol)
+(global-auto-highlight-symbol-mode t)
+(require 'paredit)
+(require 'clojure-mode)
 
 (show-paren-mode 1)
 (require 'highlight-parentheses)
@@ -59,28 +48,13 @@
 (setq-default whitespace-line-column 80)
 (setq whitespace-style (quote (face spaces tabs trailing empty tab-mark space-before-tab space-after-tab)))
 (global-whitespace-mode 1)
-;(whitespace-mode 1)
 
-;(setq default-tab-width 2)
-;(setq tab-width 2)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict/")
+(ac-config-default)
 
-;(setq standard-indent 2)
-;(setq tab-stop-list (number-sequence 2 200 2))
-;;; Prevent Extraneous Tabs
-;     (setq-default indent-tabs-mode nil)
-
-; (setq tab-width 4) ; or any other preferred value
-;(defvaralias 'ema 'tab-width)
-;    (defvaralias 'cperl-indent-level 'tab-width)
-
-(global-hl-line-mode 1)
-
-; Get normal copy paste shortcuts
+; Get some default keybindings for copy/paste/undo
 (cua-mode t)
-;(setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
-;(transient-mark-mode 1) ;; No region when it is not highlighted
-;(setq cua-keep-region-after-copy t) ;; Standard Windows behaviour
-
 ; Fix copy/paste buffers
 (setq x-select-enable-clipboard t)
 (setq select-active-regions t) ;  active region sets primary X11 selection
@@ -88,6 +62,7 @@
 (global-set-key (kbd "C-v") 'clipboard-yank)
 (global-set-key (kbd "C-c") 'clipboard-kill-ring-save)
 
+; Some custom keybindings
 (global-set-key (kbd "<f5>") 'eval-buffer)
 (global-set-key (kbd "<f6>") 'clojure-jack-in)
 (global-set-key (kbd "C-3")
@@ -96,6 +71,7 @@
     (re-search-forward (format "\\b%s\\b" (thing-at-point 'word)))))
 (global-set-key (kbd "<f4>") 'eval-last-sexp)
 (global-set-key (kbd "<f7>") 'slime-interrupt)
+(global-set-key (kbd "C-\\") 'ac-complete-filename)
 
 (defun my-isearch-word-at-point ()
   (interactive)
@@ -122,17 +98,25 @@
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 (global-set-key (kbd "<f3>") 'my-isearch-word-at-point)
 
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict/")
-(ac-config-default)
 
-(global-set-key (kbd "C-\\") 'ac-complete-filename)
+(push "*Help*" special-display-buffer-names)
+(push "*Backtrace*" special-display-buffer-names)
+(push ".*sldb.*" special-display-regexps)
+
+(add-hook 'slime-mode-hook
+	  (lambda ()
+	    (require 'midje-mode)
+	    (midje-mode 1)))
+
+(add-hook 'clojure-mode-hook
+	  (lambda ()
+	    (paredit-mode 1)))
+
+(add-hook 'slime-repl-mode-hook
+	  (lambda ()
+	    (paredit-mode 1)))
 
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
-;(global-ede-mode 1)                      ; Enable the Project management system
-;(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion
-;(global-srecode-minor-mode 1)            ; Enable template insertion menu
-
 (require 'ecb)
 (setq ecb-tip-of-the-day nil)
 (global-set-key (kbd "<f12>") 'ecb-activate)
@@ -164,29 +148,16 @@
     (slime-compile-and-load-file)))
 (add-hook 'after-save-hook 'clojure-slime-maybe-compile-and-load-file)
 
-;(defun clojure-slime-compile-and-load-file ()
-;    (save-buffer)
-;    (slime-compile-and-load-file)
-;    (slime-switch-to-output-buffer))
-;(global-set-key (kbd "<f7>") 'clojure-slime-compile-and-load-file)
-
-(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
-
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 (eval-after-load "auto-complete"
-   '(add-to-list 'ac-modes 'slime-repl-mode))
-
-(require 'git-emacs)
-
-(require 'yasnippet)
-(yas/global-mode 1)
+  '(add-to-list 'ac-modes 'slime-repl-mode))
 
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist-alist
-         '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
+	     '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
 (add-to-list 'compilation-error-regexp-alist 'kibit)
 
 ;; A convenient command to run "lein kibit" in the project to which
@@ -196,9 +167,6 @@
 Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile "lein kibit"))
-
-(require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode t)
 
 
 
