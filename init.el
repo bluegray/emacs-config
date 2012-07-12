@@ -26,8 +26,8 @@
   (midje-mode 1)))
 
 (add-hook 'clojure-mode-hook
-	(lambda ()
-	(paredit-mode 1)))
+	  (lambda ()
+	    (paredit-mode 1)))
 
 (setq scroll-step 1)
 (require 'color-theme)
@@ -52,7 +52,6 @@
 (global-highlight-parentheses-mode t)
 
 (load-file "~/.emacs.d/plugins/highlight-indentation.el")
-
 (highlight-indentation-mode 1)
 (highlight-indentation-current-column-mode 1)
 
@@ -60,11 +59,19 @@
 (setq-default whitespace-line-column 80)
 (setq whitespace-style (quote (face spaces tabs trailing empty tab-mark space-before-tab space-after-tab)))
 (global-whitespace-mode 1)
-(whitespace-mode 1)
+;(whitespace-mode 1)
 
-(setq default-tab-width 2)
+;(setq default-tab-width 2)
+;(setq tab-width 2)
+
 ;(setq standard-indent 2)
 ;(setq tab-stop-list (number-sequence 2 200 2))
+;;; Prevent Extraneous Tabs
+;     (setq-default indent-tabs-mode nil)
+
+; (setq tab-width 4) ; or any other preferred value
+;(defvaralias 'ema 'tab-width)
+;    (defvaralias 'cperl-indent-level 'tab-width)
 
 (global-hl-line-mode 1)
 
