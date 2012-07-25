@@ -110,17 +110,17 @@
 (push ".*sldb.*" special-display-regexps)
 
 (add-hook 'slime-mode-hook
-	  (lambda ()
-	    (require 'midje-mode)
-	    (midje-mode 1)))
+          (lambda ()
+            (require 'midje-mode)
+            (midje-mode 1)))
 
 (add-hook 'clojure-mode-hook
-	  (lambda ()
-	    (paredit-mode 1)))
+          (lambda ()
+            (paredit-mode 1)))
 
 (add-hook 'slime-repl-mode-hook
-	  (lambda ()
-	    (paredit-mode 1)))
+          (lambda ()
+            (paredit-mode 1)))
 
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (require 'ecb)
@@ -163,7 +163,7 @@
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist-alist
-	     '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
+             '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
 (add-to-list 'compilation-error-regexp-alist 'kibit)
 
 ;; A convenient command to run "lein kibit" in the project to which
@@ -176,6 +176,8 @@ Display the results in a hyperlinked *compilation* buffer."
 
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
+(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq global-tab-width 2) ; or any other preferred value
