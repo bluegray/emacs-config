@@ -21,7 +21,7 @@
 (setq scroll-step 1)
 (menu-bar-mode 1)
 (set-default-font "Consolas 10")
-(require 'linum) 
+(require 'linum)
 (global-linum-mode 1)
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode 1)
@@ -72,6 +72,12 @@
 (global-set-key (kbd "<f4>") 'eval-last-sexp)
 (global-set-key (kbd "<f7>") 'slime-interrupt)
 (global-set-key (kbd "C-\\") 'ac-complete-filename)
+
+(defun indent-buffer ()
+      (interactive)
+      (save-excursion
+        (indent-region (point-min) (point-max) nil)))
+    (global-set-key (kbd "<f11>") 'indent-buffer)
 
 (defun my-isearch-word-at-point ()
   (interactive)
@@ -168,7 +174,12 @@ Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile "lein kibit"))
 
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
+(setq-default indent-tabs-mode nil)
+(setq global-tab-width 2) ; or any other preferred value
+(setq css-indent-offset 2)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -183,14 +194,18 @@ Display the results in a hyperlinked *compilation* buffer."
  '(ecb-windows-width 0.2)
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
  '(hl-paren-colors (quote ("#fff")))
+ '(scss-sass-command "sass")
+ '(scss-sass-options (quote ("--check" "-I" "/home/bluegray/.rvm/gems/ruby-1.9.3-p125/gems/compass-0.12.2/frameworks/compass/stylesheets/")))
  '(sh-basic-offset 2)
- '(sh-indentation 2))
+ '(sh-indentation 2)
+ '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 88 96 104 112 120))))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(css-property ((t (:inherit font-lock-variable-name-face :foreground "#ffff88"))))
  '(hl-line ((t (:background "#2a2a2a"))))
  '(hl-paren-face ((t (:weight bold))) t)
  '(rainbow-delimiters-depth-1-face ((((background dark)) (:foreground "#88e"))))
