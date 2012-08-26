@@ -109,7 +109,7 @@
 (push "*Help*" special-display-buffer-names)
 (push "*Backtrace*" special-display-buffer-names)
 (push ".*sldb.*" special-display-regexps)
-(push "*SLIME.*" special-display-regexps)
+(push "*SLIME.*Compilation.*" special-display-regexps)
 (push "*compilation.*" special-display-regexps)
 
 (add-hook 'slime-mode-hook
