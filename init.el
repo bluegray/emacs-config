@@ -12,10 +12,13 @@
 (package-initialize)
 
 (require 'color-theme)
+(require 'color-theme-solarized)
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-desert)))
+     (color-theme-desert)
+    ;(color-theme-solarized-dark)
+))
 
 (global-auto-revert-mode t)
 (setq inhibit-splash-screen t)
@@ -30,8 +33,17 @@
 (require 'git-emacs)
 (require 'yasnippet)
 (yas/global-mode 1)
+
 (require 'auto-highlight-symbol)
-(global-auto-highlight-symbol-mode t)
+;(global-auto-highlight-symbol-mode t)
+(global-set-key (kbd "C-e") 'ahs-edit-mode)
+(global-set-key (kbd "C-<f3>") 'auto-highlight-symbol-mode)
+
+(require 'highlight-symbol)
+(global-set-key (kbd "#") 'highlight-symbol-at-point)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+
 (require 'paredit)
 (require 'clojure-mode)
 
@@ -102,15 +114,21 @@
             isearch-yank-flag t)
       (isearch-search-and-update))))
 
-(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
-(global-set-key (kbd "<f3>") 'my-isearch-word-at-point)
-
+;(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
+;(global-set-key (kbd "<f3>") 'my-isearch-word-at-point)
 
 (push "*Help*" special-display-buffer-names)
 (push "*Backtrace*" special-display-buffer-names)
 (push ".*sldb.*" special-display-regexps)
 (push "*SLIME.*Compilation.*" special-display-regexps)
 (push "*compilation.*" special-display-regexps)
+
+(append special-display-buffer-names
+        '("*VC-log*"
+          "*Help*"
+          ("*SLIME.*Compilation.*"
+           (height . 25)
+           (font . "Consolas 10"))))
 
 (add-hook 'slime-mode-hook
           (lambda ()
@@ -191,11 +209,17 @@ Display the results in a hyperlinked *compilation* buffer."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(clojure-swank-command "lein2 jack-in %s")
+ '(cua-mode t nil (cua-base))
  '(ecb-layout-name "bluegray")
  '(ecb-layout-window-sizes (quote (("bluegray" (0.21171171171171171 . 0.3) (0.21171171171171171 . 0.14) (0.21171171171171171 . 0.22) (0.21171171171171171 . 0.32)))))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-source-path (quote (("~/devel/" "dev") ("/home/bluegray/devel/Cognician-API-Server" "API"))))
+ '(ecb-source-path (quote (("~/devel/" "dev")
+                           ("/home/bluegray/devel/C2" "C2")
+                           ("/home/bluegray/devel/Forge" "Forge")
+                           ("/home/bluegray/devel/Press" "Press")
+                           ("/home/bluegray/devel/Server" "Server"))))
  '(ecb-windows-width 0.2)
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
  '(hl-paren-colors (quote ("#fff")))
@@ -203,6 +227,7 @@ Display the results in a hyperlinked *compilation* buffer."
  '(scss-sass-options (quote ("--check" "-I" "/home/bluegray/.rvm/gems/ruby-1.9.3-p125/gems/compass-0.12.2/frameworks/compass/stylesheets/")))
  '(sh-basic-offset 2)
  '(sh-indentation 2)
+ '(show-paren-mode t)
  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 88 96 104 112 120))))
 
 (custom-set-faces
@@ -210,6 +235,7 @@ Display the results in a hyperlinked *compilation* buffer."
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "ghost white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "ProggySquareTTSZ"))))
  '(css-property ((t (:inherit font-lock-variable-name-face :foreground "#ffff88"))))
  '(hl-line ((t (:background "#2a2a2a"))))
  '(hl-paren-face ((t (:weight bold))) t)
