@@ -40,7 +40,7 @@
 (global-set-key (kbd "C-<f3>") 'auto-highlight-symbol-mode)
 
 (require 'highlight-symbol)
-(global-set-key (kbd "#") 'highlight-symbol-at-point)
+(global-set-key (kbd "<f2>") 'highlight-symbol-at-point)
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 
