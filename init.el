@@ -11,6 +11,8 @@
   '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+
+;; Set the theme
 (require 'color-theme)
 (require 'color-theme-solarized)
 (eval-after-load "color-theme"
@@ -18,7 +20,9 @@
      (color-theme-initialize)
      (color-theme-desert)
     ;(color-theme-solarized-dark)
-))
+     ))
+;(load-theme 'misterioso)
+
 
 (global-auto-revert-mode t)
 (setq inhibit-splash-screen t)
@@ -66,14 +70,34 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict/")
 (ac-config-default)
 
-; Get some default keybindings for copy/paste/undo
-(cua-mode t)
-; Fix copy/paste buffers
-(setq x-select-enable-clipboard t)
-(setq select-active-regions t) ;  active region sets primary X11 selection
-(global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection, not clipboard and kill ring.
-(global-set-key (kbd "C-v") 'clipboard-yank)
-(global-set-key (kbd "C-c") 'clipboard-kill-ring-save)
+
+;; ## http://emacswiki.org/emacs/CopyAndPaste
+(custom-set-variables '(mouse-sel-mode t))
+(defun insert-from-clipboard ()
+  "Insert the text from the current x-selection."
+  (interactive)
+  (insert (x-selection-value 'PRIMARY)))
+(global-set-key [(S-insert)] 'insert-from-clipboard)
+;; export last insert into kill-ring as PRIMARY selection to other apps
+(defun my-x-select-text (text &optional push)
+  (let ((x-select-enable-clipboard t)
+        (x-select-enable-primary nil))
+    (x-select-text text push)))
+(setq interprogram-cut-function 'my-x-select-text)
+; We have to be very carefull never to return the same thing twice, as
+; it will be put into the kill-ring.
+; If we want to express (car kill-ring), just return nil
+(defun my-x-yank ()
+  (interactive)
+  (let ((ck (car kill-ring))
+        (xgsc (x-selection-value 'CLIPBOARD)))
+    (if (not (string= ck xgsc))
+        xgsc
+      nil ;; caller uses (car kill-ring)
+      )))
+(when (string= (window-system) "x")
+  (setq interprogram-paste-function 'my-x-yank))
+
 
 ; Some custom keybindings
 (global-set-key (kbd "<f5>") 'eval-buffer)
@@ -181,6 +205,7 @@
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
 
+;; ## https://github.com/jonase/kibit
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist-alist
@@ -195,6 +220,7 @@ Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile "lein kibit"))
 
+
 (autoload 'scss-mode "scss-mode")
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
@@ -203,6 +229,37 @@ Display the results in a hyperlinked *compilation* buffer."
 (setq-default indent-tabs-mode nil)
 (setq global-tab-width 2) ; or any other preferred value
 (setq css-indent-offset 2)
+
+
+;; Change cursor color according to mode; inspired by
+;; http://www.emacswiki.org/emacs/ChangingCursorDynamically
+(setq djcb-read-only-color       "gray")
+;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
+;; (hbar. HEIGHT); see the docs for set-cursor-type
+
+(setq djcb-read-only-cursor-type 'hbar)
+(setq djcb-overwrite-color       "#ff8888")
+(setq djcb-overwrite-cursor-type 'box)
+(setq djcb-normal-color          "#c4f2ff")
+(setq djcb-normal-cursor-type    'bar)
+
+(defun djcb-set-cursor-according-to-mode ()
+  "change cursor color and type according to some minor modes."
+
+  (cond
+    (buffer-read-only
+      (set-cursor-color djcb-read-only-color)
+      (setq cursor-type djcb-read-only-cursor-type))
+    (overwrite-mode
+      (set-cursor-color djcb-overwrite-color)
+      (setq cursor-type djcb-overwrite-cursor-type))
+    (t
+      (set-cursor-color djcb-normal-color)
+      (setq cursor-type djcb-normal-cursor-type))))
+
+(add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
+
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -215,11 +272,7 @@ Display the results in a hyperlinked *compilation* buffer."
  '(ecb-layout-window-sizes (quote (("bluegray" (0.21171171171171171 . 0.3) (0.21171171171171171 . 0.14) (0.21171171171171171 . 0.22) (0.21171171171171171 . 0.32)))))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-source-path (quote (("~/devel/" "dev")
-                           ("/home/bluegray/devel/C2" "C2")
-                           ("/home/bluegray/devel/Forge" "Forge")
-                           ("/home/bluegray/devel/Press" "Press")
-                           ("/home/bluegray/devel/Server" "Server"))))
+ '(ecb-source-path (quote (("~/devel/" "dev") ("/home/bluegray/devel/C2" "C2") ("/home/bluegray/devel/Press" "Press") ("/home/bluegray/devel/Server" "Server"))))
  '(ecb-windows-width 0.2)
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
  '(hl-paren-colors (quote ("#fff")))
@@ -237,6 +290,7 @@ Display the results in a hyperlinked *compilation* buffer."
   ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "ghost white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "ProggySquareTTSZ"))))
  '(css-property ((t (:inherit font-lock-variable-name-face :foreground "#ffff88"))))
+ '(font-lock-string-face ((t (:foreground "#ffd0d0"))))
  '(hl-line ((t (:background "#2a2a2a"))))
  '(hl-paren-face ((t (:weight bold))) t)
  '(rainbow-delimiters-depth-1-face ((((background dark)) (:foreground "#f00"))))
