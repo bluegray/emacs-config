@@ -1,0 +1,3 @@
+[submodule "plugins/helm"]
+	path = plugins/helm
+	url = https://github.com/emacs-helm/helm.git

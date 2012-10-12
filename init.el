@@ -31,12 +31,17 @@
 (set-default-font "Consolas 10")
 (require 'linum)
 (global-linum-mode 1)
+(column-number-mode 1)
 (require 'rainbow-delimiters)
 (global-rainbow-delimiters-mode 1)
 (global-hl-line-mode 1)
 (require 'git-emacs)
 (require 'yasnippet)
 (yas/global-mode 1)
+
+;; # http://stackoverflow.com/questions/9877180/emacs-ecb-alternative
+;; For ECB to start
+(setq stack-trace-on-error t)
 
 (require 'auto-highlight-symbol)
 ;(global-auto-highlight-symbol-mode t)
@@ -259,6 +264,29 @@ Display the results in a hyperlinked *compilation* buffer."
 
 (add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
+
+;; ## http://www.emacswiki.org/emacs/FlymakeHtml
+(add-hook 'find-file-hook 'flymake-find-file-hook)
+(require 'flymake)
+
+(defun flymake-html-init ()
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list "tidy" (list local-file))))
+(add-to-list 'flymake-allowed-file-name-masks
+             '("\\.html$\\|\\.ctp" flymake-html-init))
+(add-to-list 'flymake-err-line-patterns
+             '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
+               nil 1 2 4))
+
+
+;; ## helm https://github.com/emacs-helm/helm
+;(require 'helm-config)
+;(global-set-key (kbd "C-c h") 'helm-mini)
+;(helm-mode 1)
 
 
 (custom-set-variables
