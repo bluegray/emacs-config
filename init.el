@@ -36,6 +36,7 @@
 (global-rainbow-delimiters-mode 1)
 (global-hl-line-mode 1)
 (require 'git-emacs)
+(require 'magit)
 (require 'yasnippet)
 (yas/global-mode 1)
 
@@ -68,40 +69,14 @@
 
 ;; make whitespace-mode use just basic coloring
 (setq-default whitespace-line-column 80)
-(setq whitespace-style (quote (face spaces tabs trailing empty tab-mark space-before-tab space-after-tab)))
+(setq whitespace-style (quote
+ (face spaces tabs trailing empty tab-mark
+  space-before-tab space-after-tab lines-tail)))
 (global-whitespace-mode 1)
 
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict/")
 (ac-config-default)
-
-
-;; ## http://emacswiki.org/emacs/CopyAndPaste
-(custom-set-variables '(mouse-sel-mode t))
-(defun insert-from-clipboard ()
-  "Insert the text from the current x-selection."
-  (interactive)
-  (insert (x-selection-value 'PRIMARY)))
-(global-set-key [(S-insert)] 'insert-from-clipboard)
-;; export last insert into kill-ring as PRIMARY selection to other apps
-(defun my-x-select-text (text &optional push)
-  (let ((x-select-enable-clipboard t)
-        (x-select-enable-primary nil))
-    (x-select-text text push)))
-(setq interprogram-cut-function 'my-x-select-text)
-; We have to be very carefull never to return the same thing twice, as
-; it will be put into the kill-ring.
-; If we want to express (car kill-ring), just return nil
-(defun my-x-yank ()
-  (interactive)
-  (let ((ck (car kill-ring))
-        (xgsc (x-selection-value 'CLIPBOARD)))
-    (if (not (string= ck xgsc))
-        xgsc
-      nil ;; caller uses (car kill-ring)
-      )))
-(when (string= (window-system) "x")
-  (setq interprogram-paste-function 'my-x-yank))
 
 
 ; Some custom keybindings
@@ -114,6 +89,7 @@
 (global-set-key (kbd "<f4>") 'eval-last-sexp)
 (global-set-key (kbd "<f7>") 'slime-interrupt)
 (global-set-key (kbd "C-\\") 'ac-complete-filename)
+(global-set-key (kbd "<f8>") 'magit-status)
 
 (defun indent-buffer ()
       (interactive)
