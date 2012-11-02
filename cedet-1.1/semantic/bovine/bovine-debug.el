@@ -90,7 +90,7 @@ LEXTOKEN, is a token returned by the lexer which is being matched."
   "Highlight one parser frame."
   (let* ((nonterm (oref frame nonterm))
 	 (pb (oref semantic-debug-current-interface parser-buffer))
-	 (start (semantic-find-nonterminal-by-token 'start pb))
+	 (start (semantic-brute-find-tag-by-class 'start pb))
 	)
     ;; Make sure we get a good rule name, and that it is a string
     (if (and (eq nonterm 'bovine-toplevel) start)
