@@ -17,10 +17,10 @@
 (require 'color-theme-solarized)
 (eval-after-load "color-theme"
   '(progn
-     (color-theme-initialize)
-     (color-theme-desert)
+   (color-theme-initialize)
+   (color-theme-desert)
     ;(color-theme-solarized-dark)
-     ))
+    ))
 ;(load-theme 'misterioso)
 
 
@@ -28,7 +28,7 @@
 (setq inhibit-splash-screen t)
 (setq scroll-step 1)
 (menu-bar-mode 1)
-(set-default-font "Consolas 10")
+(set-default-font "ProggySquareTTSZ 16")
 (require 'linum)
 (global-linum-mode 1)
 (column-number-mode 1)
@@ -68,7 +68,7 @@
 (highlight-indentation-current-column-mode 1)
 
 ;; make whitespace-mode use just basic coloring
-(setq-default whitespace-line-column 80)
+(setq-default whitespace-line-column 90)
 (setq whitespace-style (quote
  (face spaces tabs trailing empty tab-mark
   space-before-tab space-after-tab lines-tail)))
@@ -77,6 +77,11 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict/")
 (ac-config-default)
+
+(add-hook 'clojure-mode-hook
+ (lambda ()
+  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1
+   font-lock-warning-face t)))))
 
 
 ; Some custom keybindings
@@ -92,35 +97,11 @@
 (global-set-key (kbd "<f8>") 'magit-status)
 
 (defun indent-buffer ()
-      (interactive)
-      (save-excursion
-        (indent-region (point-min) (point-max) nil)))
-    (global-set-key (kbd "<f11>") 'indent-buffer)
-
-(defun my-isearch-word-at-point ()
   (interactive)
-  (call-interactively 'isearch-forward-regexp))
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+(global-set-key (kbd "<f11>") 'indent-buffer)
 
-(defun my-isearch-yank-word-hook ()
-  (when (equal this-command 'my-isearch-word-at-point)
-    (let ((string (concat "\\<"
-                          (buffer-substring-no-properties
-                           (progn (skip-syntax-backward "w_") (point))
-                           (progn (skip-syntax-forward "w_") (point)))
-                          "\\>")))
-      (if (and isearch-case-fold-search
-               (eq 'not-yanks search-upper-case))
-          (setq string (downcase string)))
-      (setq isearch-string string
-            isearch-message
-            (concat isearch-message
-                    (mapconcat 'isearch-text-char-description
-                               string ""))
-            isearch-yank-flag t)
-      (isearch-search-and-update))))
-
-;(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
-;(global-set-key (kbd "<f3>") 'my-isearch-word-at-point)
 
 (push "*Help*" special-display-buffer-names)
 (push "*Backtrace*" special-display-buffer-names)
@@ -129,24 +110,24 @@
 (push "*compilation.*" special-display-regexps)
 
 (append special-display-buffer-names
-        '("*VC-log*"
-          "*Help*"
-          ("*SLIME.*Compilation.*"
-           (height . 25)
-           (font . "Consolas 10"))))
+  '("*VC-log*"
+    "*Help*"
+    ("*SLIME.*Compilation.*"
+     (height . 25)
+     (font . "Consolas 10"))))
 
 (add-hook 'slime-mode-hook
-          (lambda ()
-            (require 'midje-mode)
-            (midje-mode 1)))
+  (lambda ()
+    (require 'midje-mode)
+    (midje-mode 1)))
 
 (add-hook 'clojure-mode-hook
-          (lambda ()
-            (paredit-mode 1)))
+  (lambda ()
+    (paredit-mode 1)))
 
 (add-hook 'slime-repl-mode-hook
-          (lambda ()
-            (paredit-mode 1)))
+  (lambda ()
+    (paredit-mode 1)))
 
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (require 'ecb)
@@ -175,7 +156,7 @@
 
 (defun clojure-slime-maybe-compile-and-load-file ()
   "Call function `slime-compile-and-load-file' if current buffer is connected to a swank server.
-   Meant to be used in `after-save-hook'."
+  Meant to be used in `after-save-hook'."
   (when (and (eq major-mode 'clojure-mode) (slime-connected-p))
     (slime-compile-and-load-file)))
 (add-hook 'after-save-hook 'clojure-slime-maybe-compile-and-load-file)
@@ -190,14 +171,14 @@
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist-alist
-             '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
+ '(kibit "At \\([^:]+\\):\\([[:digit:]]+\\):" 1 2 nil 0))
 (add-to-list 'compilation-error-regexp-alist 'kibit)
 
 ;; A convenient command to run "lein kibit" in the project to which
 ;; the current emacs buffer belongs to.
 (defun kibit ()
   "Run kibit on the current project.
-Display the results in a hyperlinked *compilation* buffer."
+  Display the results in a hyperlinked *compilation* buffer."
   (interactive)
   (compile "lein kibit"))
 
@@ -247,16 +228,16 @@ Display the results in a hyperlinked *compilation* buffer."
 
 (defun flymake-html-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "tidy" (list local-file))))
+   'flymake-create-temp-inplace))
+  (local-file (file-relative-name
+    temp-file
+    (file-name-directory buffer-file-name))))
+  (list "tidy" (list local-file))))
 (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.html$\\|\\.ctp" flymake-html-init))
+ '("\\.html$\\|\\.ctp" flymake-html-init))
 (add-to-list 'flymake-err-line-patterns
-             '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
-               nil 1 2 4))
+ '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
+   nil 1 2 4))
 
 
 ;; ## helm https://github.com/emacs-helm/helm
@@ -266,14 +247,14 @@ Display the results in a hyperlinked *compilation* buffer."
 
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(clojure-swank-command "lein2 jack-in %s")
  '(cua-mode t nil (cua-base))
  '(ecb-layout-name "bluegray")
- '(ecb-layout-window-sizes (quote (("bluegray" (0.21171171171171171 . 0.3) (0.21171171171171171 . 0.14) (0.21171171171171171 . 0.22) (0.21171171171171171 . 0.32)))))
+ '(ecb-layout-window-sizes (quote (("bluegray" (0.13063063063063063 . 0.29508196721311475) (0.13063063063063063 . 0.14754098360655737) (0.13063063063063063 . 0.21311475409836064) (0.13063063063063063 . 0.32786885245901637)))))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
  '(ecb-source-path (quote (("~/devel/" "dev") ("/home/bluegray/devel/C2" "C2") ("/home/bluegray/devel/Press" "Press") ("/home/bluegray/devel/Server" "Server"))))
@@ -288,10 +269,10 @@ Display the results in a hyperlinked *compilation* buffer."
  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 88 96 104 112 120))))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "ghost white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "ProggySquareTTSZ"))))
  '(css-property ((t (:inherit font-lock-variable-name-face :foreground "#ffff88"))))
  '(font-lock-string-face ((t (:foreground "#ffd0d0"))))
