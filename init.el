@@ -80,13 +80,14 @@
 
 (add-hook 'clojure-mode-hook
  (lambda ()
-  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1
+  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1
    font-lock-warning-face t)))))
 
 
 ; Some custom keybindings
 (global-set-key (kbd "<f5>") 'eval-buffer)
 (global-set-key (kbd "<f6>") 'clojure-jack-in)
+(global-set-key (kbd "<f9>") 'nrepl-jack-in)
 (global-set-key (kbd "C-3")
   (lambda ()
     (interactive)
@@ -244,6 +245,16 @@
 ;(require 'helm-config)
 ;(global-set-key (kbd "C-c h") 'helm-mini)
 ;(helm-mode 1)
+
+
+;; nrepl
+(require 'nrepl)
+(add-hook 'nrepl-mode-hook 'paredit-mode)
+;(setq nrepl-popup-stacktraces nil)
+
+(require 'ac-nrepl)
+(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))
 
 
 (custom-set-variables
