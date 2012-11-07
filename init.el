@@ -250,7 +250,7 @@
 ;; nrepl
 (require 'nrepl)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
-;(setq nrepl-popup-stacktraces nil)
+(setq nrepl-popup-stacktraces nil)
 
 (require 'ac-nrepl)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
