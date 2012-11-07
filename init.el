@@ -268,7 +268,7 @@
  '(ecb-layout-window-sizes (quote (("bluegray" (0.13063063063063063 . 0.29508196721311475) (0.13063063063063063 . 0.14754098360655737) (0.13063063063063063 . 0.21311475409836064) (0.13063063063063063 . 0.32786885245901637)))))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-source-path (quote (("~/devel/" "dev") ("/home/bluegray/devel/C2" "C2") ("/home/bluegray/devel/Press" "Press") ("/home/bluegray/devel/Server" "Server"))))
+ '(ecb-source-path (quote (("~/devel/" "dev") ("/home/bluegray/devel/C2" "C2") ("/home/bluegray/devel/Press" "Press") ("/home/bluegray/devel/Server" "Server") ("/home/bluegray/devel/Semaphore2" "Semaphore2") ("/home/bluegray/devel/Cognician-Semaphore" "Cognician-Semaphore") )))
  '(ecb-windows-width 0.2)
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
  '(hl-paren-colors (quote ("#fff")))
