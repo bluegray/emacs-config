@@ -32,6 +32,8 @@
 ;;
 ;;; Change Log:
 ;;
+;;    Fixed bug causing last color not to be displayed.
+;;
 ;; 2009-03-19 (1.0.1)
 ;;    Added setter for color variables.
 ;;
@@ -100,7 +102,7 @@ This is used to prevent analyzing the same context over and over.")
       (save-excursion
         (condition-case err
             (while (and (setq pos1 (cadr (syntax-ppss pos1)))
-                        (cddr overlays))
+                        (cdr overlays))
               (move-overlay (pop overlays) pos1 (1+ pos1))
               (when (setq pos2 (scan-sexps pos1 1))
                 (move-overlay (pop overlays) (1- pos2) pos2)
@@ -110,6 +112,14 @@ This is used to prevent analyzing the same context over and over.")
       (dolist (ov overlays)
         (move-overlay ov 1 1)))))
 
+(defcustom highlight-parentheses-idle-time 0.5
+  "Time after which to highlight the word at point."
+  :group 'idle-highlight
+  :type 'float)
+
+(defvar highlight-parentheses-global-timer nil
+  "Timer to trigger highlighting.")
+
 ;;;###autoload
 (define-minor-mode highlight-parentheses-mode
   "Minor mode to highlight the surrounding parentheses."
@@ -117,11 +127,13 @@ This is used to prevent analyzing the same context over and over.")
   (if highlight-parentheses-mode
       (progn
         (hl-paren-create-overlays)
-        (add-hook 'post-command-hook 'hl-paren-highlight nil t))
+        (progn (unless highlight-parentheses-global-timer
+                 (setq highlight-parentheses-global-timer
+                       (run-with-idle-timer highlight-parentheses-idle-time
+                                            :repeat 'hl-paren-highlight)))))
     (mapc 'delete-overlay hl-paren-overlays)
     (kill-local-variable 'hl-paren-overlays)
-    (kill-local-variable 'hl-paren-point)
-    (remove-hook 'post-command-hook 'hl-paren-highlight t)))
+    (kill-local-variable 'hl-paren-last-point)))
 
 ;;; overlays ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
