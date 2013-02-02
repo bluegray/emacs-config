@@ -18,10 +18,7 @@
 (eval-after-load "color-theme"
   '(progn
    (color-theme-initialize)
-   (color-theme-desert)
-    ;(color-theme-solarized-dark)
-    ))
-;(load-theme 'misterioso)
+   (color-theme-desert)))
 
 
 (global-auto-revert-mode t)
@@ -39,6 +36,14 @@
 (require 'magit)
 (require 'yasnippet)
 (yas/global-mode 1)
+(setq require-final-newline t)
+
+(setq-default indent-tabs-mode nil)
+(setq global-tab-width 2)
+(setq css-indent-offset 2)
+
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; # http://stackoverflow.com/questions/9877180/emacs-ecb-alternative
 ;; For ECB to start
@@ -55,7 +60,6 @@
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 
 (require 'paredit)
-(require 'clojure-mode)
 
 (show-paren-mode 1)
 (require 'highlight-parentheses)
@@ -78,6 +82,8 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict/")
 (ac-config-default)
 
+(require 'clojure-mode)
+(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-mode))
 (add-hook 'clojure-mode-hook
  (lambda ()
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1
@@ -86,15 +92,12 @@
 
 ; Some custom keybindings
 (global-set-key (kbd "<f5>") 'eval-buffer)
-(global-set-key (kbd "<f6>") 'clojure-jack-in)
-(global-set-key (kbd "<f9>") 'nrepl-jack-in)
+(global-set-key (kbd "<f6>") 'nrepl-jack-in)
 (global-set-key (kbd "C-3")
   (lambda ()
     (interactive)
     (re-search-forward (format "\\b%s\\b" (thing-at-point 'word)))))
-(global-set-key (kbd "<f4>") 'eval-last-sexp)
-(global-set-key (kbd "<f7>") 'slime-interrupt)
-(global-set-key (kbd "C-\\") 'ac-complete-filename)
+(global-set-key (kbd "<f4>") 'nrepl-eval-last-expression)
 (global-set-key (kbd "<f8>") 'magit-status)
 
 (defun indent-buffer ()
@@ -106,8 +109,6 @@
 
 (push "*Help*" special-display-buffer-names)
 (push "*Backtrace*" special-display-buffer-names)
-(push ".*sldb.*" special-display-regexps)
-(push "*SLIME.*Compilation.*" special-display-regexps)
 (push "*compilation.*" special-display-regexps)
 
 (append special-display-buffer-names
@@ -117,19 +118,17 @@
      (height . 25)
      (font . "Consolas 10"))))
 
-(add-hook 'slime-mode-hook
-  (lambda ()
-    (require 'midje-mode)
-    (midje-mode 1)))
+
+(require 'midje-mode)
+(require 'clojure-jump-to-file)
 
 (add-hook 'clojure-mode-hook
   (lambda ()
     (paredit-mode 1)))
 
-(add-hook 'slime-repl-mode-hook
-  (lambda ()
-    (paredit-mode 1)))
 
+;; ##############################################
+;; ECB
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (require 'ecb)
 (setq ecb-tip-of-the-day nil)
@@ -146,7 +145,7 @@
      (ecb-split-ver 0.3 t)
      (other-window 1)
      (ecb-set-sources-buffer)
-     (ecb-split-ver 0.2 t)
+     (ecb-split-ver 0.4 t)
      (other-window 1)
      (ecb-set-methods-buffer)
      (ecb-split-ver 0.4 t)
@@ -155,19 +154,7 @@
      ;; 5. Make the ECB-edit-window current (see Postcondition above)
      (select-window (next-window)))
 
-(defun clojure-slime-maybe-compile-and-load-file ()
-  "Call function `slime-compile-and-load-file' if current buffer is connected to a swank server.
-  Meant to be used in `after-save-hook'."
-  (when (and (eq major-mode 'clojure-mode) (slime-connected-p))
-    (slime-compile-and-load-file)))
-(add-hook 'after-save-hook 'clojure-slime-maybe-compile-and-load-file)
-
-(require 'ac-slime)
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
-
+;; ##############################################
 ;; ## https://github.com/jonase/kibit
 ;; Teach compile the syntax of the kibit output
 (require 'compile)
@@ -184,16 +171,6 @@
   (compile "lein kibit"))
 
 
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-
-(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-mode))
-
-(setq-default indent-tabs-mode nil)
-(setq global-tab-width 2) ; or any other preferred value
-(setq css-indent-offset 2)
-
-
 ;; Change cursor color according to mode; inspired by
 ;; http://www.emacswiki.org/emacs/ChangingCursorDynamically
 (setq djcb-read-only-color       "gray")
@@ -208,7 +185,6 @@
 
 (defun djcb-set-cursor-according-to-mode ()
   "change cursor color and type according to some minor modes."
-
   (cond
     (buffer-read-only
       (set-cursor-color djcb-read-only-color)
@@ -219,7 +195,6 @@
     (t
       (set-cursor-color djcb-normal-color)
       (setq cursor-type djcb-normal-cursor-type))))
-
 (add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
 
@@ -244,17 +219,74 @@
 ;; ## helm https://github.com/emacs-helm/helm
 ;(require 'helm-config)
 ;(global-set-key (kbd "C-c h") 'helm-mini)
-;(helm-mode 1)
+;(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+;(helm-mode 1)
 
 ;; nrepl
 (require 'nrepl)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'nrepl-interaction-mode-hook 'midje-mode)
 (setq nrepl-popup-stacktraces nil)
 
 (require 'ac-nrepl)
 (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
 (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'nrepl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'nrepl-interaction-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+
+(defun new-nrepl1 () (interactive) (nrepl "localhost" 9995))
+(defun new-nrepl2 () (interactive) (nrepl "localhost" 9996))
+(global-set-key (kbd "<f9>")  'new-nrepl1)
+(global-set-key (kbd "<f10>") 'new-nrepl2)
+
+;; https://gist.github.com/3725749
+(defun clojure-maybe-compile-and-load-file ()
+  "Call function `nrepl-load-current-buffer' if there's an nrepl session.
+   Meant to be used in `after-save-hook'."
+  (when (and (eq major-mode 'clojure-mode)
+             (not (string= "project.clj" buffer-file-name))
+             (not (string-match "^.*\.cljs$" buffer-file-name))
+             (nrepl-current-session))
+    (nrepl-load-current-buffer)))
+(add-hook 'after-save-hook 'clojure-maybe-compile-and-load-file)
+
+(defun nrepl-eldoc-space (n)
+  "Inserts a space and calls nrepl-eldoc to print arglists"
+  (interactive "p")
+  (self-insert-command n)
+  (when (nrepl-current-session)
+    (nrepl-eldoc)))
+(define-key clojure-mode-map (kbd "SPC") 'nrepl-eldoc-space)
+
+(defun multi-line-just-one-space (&optional n)
+  "Multi-line version of `just-one-space': Delete all spaces and tabs
+  around point, leaving one space (or N spaces). When in clojure or
+  emacs lisp mode, re-indents the s-expression."
+  (interactive "*p")
+  (let ((orig-pos (point)))
+    (skip-chars-backward " \t\n")
+    (constrain-to-field nil orig-pos)
+    (dotimes (i (or n 1))
+      (if (= (following-char) ?\s)
+          (forward-char 1)
+        (insert ?\s)))
+    (delete-region
+     (point)
+     (progn
+       (skip-chars-forward " \t\n")
+       (constrain-to-field nil orig-pos t))))
+  (when (or (eq major-mode 'clojure-mode)
+            (eq major-mode 'emacs-lisp-mode))
+    (indent-sexp)))
+(global-set-key (kbd "M-SPC") 'multi-line-just-one-space)
 
 
 (custom-set-variables
