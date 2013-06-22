@@ -220,8 +220,8 @@
 ;(require 'helm-config)
 ;(global-set-key (kbd "C-c h") 'helm-mini)
 ;(global-set-key (kbd "C-x C-f") 'helm-find-files)
-
 ;(helm-mode 1)
+
 
 ;; nrepl
 (require 'nrepl)
@@ -289,6 +289,16 @@
 (global-set-key (kbd "M-SPC") 'multi-line-just-one-space)
 
 
+;; lusty
+(require 'lusty-explorer)
+(global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
+
+
+;; git gutter
+(require 'git-gutter-fringe)
+(global-git-gutter-mode t)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -300,7 +310,12 @@
  '(ecb-layout-window-sizes (quote (("bluegray" (0.13063063063063063 . 0.29508196721311475) (0.13063063063063063 . 0.14754098360655737) (0.13063063063063063 . 0.21311475409836064) (0.13063063063063063 . 0.32786885245901637)))))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--mouse-2))
- '(ecb-source-path (quote (("~/devel/" "dev") ("/home/bluegray/devel/C2" "C2") ("/home/bluegray/devel/Press" "Press") ("/home/bluegray/devel/Server" "Server") ("/home/bluegray/devel/Semaphore2" "Semaphore2") ("/home/bluegray/devel/Cognician-Semaphore" "Cognician-Semaphore") )))
+ '(ecb-source-path (quote (("/home/bluegray/devel/" "dev")
+                           ("/home/bluegray/devel/C2" "C2")
+                           ("/home/bluegray/devel/Builder" "Builder")
+                           ("/home/bluegray/devel/Core" "Core")
+                           ("/home/bluegray/devel/Server" "Server")
+                           ("/home/bluegray/devel/Resources" "Resources"))))
  '(ecb-windows-width 0.2)
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
  '(hl-paren-colors (quote ("#fff")))

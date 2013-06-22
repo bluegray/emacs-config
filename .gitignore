@@ -11,3 +11,6 @@ elpa
 target
 swank
 repl-port
+.smex-items
+eshell
+places
