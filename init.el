@@ -242,8 +242,8 @@
 
 (define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
 
-(defun new-nrepl1 () (interactive) (nrepl "localhost" 9995))
-(defun new-nrepl2 () (interactive) (nrepl "localhost" 9996))
+(defun new-nrepl1 () (interactive) (nrepl "localhost" 9991))
+(defun new-nrepl2 () (interactive) (nrepl "localhost" 9995))
 (global-set-key (kbd "<f9>")  'new-nrepl1)
 (global-set-key (kbd "<f10>") 'new-nrepl2)
 
@@ -297,6 +297,11 @@
 ;; git gutter
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
+
+;; emacs-nav
+(require 'nav)
+(nav-disable-overeager-window-splitting)
+(global-set-key (kbd "<f7>") 'nav-toggle)
 
 
 (custom-set-variables
