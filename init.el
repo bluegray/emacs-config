@@ -298,10 +298,25 @@
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
 
+
 ;; emacs-nav
 (require 'nav)
 (nav-disable-overeager-window-splitting)
 (global-set-key (kbd "<f7>") 'nav-toggle)
+
+
+;; IswitchBuffers (alt buffer selection)
+(iswitchb-mode 1)
+
+(defun switch-to-previous-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+(global-set-key (kbd "<f7>") 'switch-to-previous-buffer)
+
+
+;; BufferSelection
+(require 'bs)
+(global-set-key (kbd "C-x C-b") 'bs-show)
 
 
 (custom-set-variables
