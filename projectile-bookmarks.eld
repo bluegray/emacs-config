@@ -1,0 +1,1 @@
+("~/devel/Server/" "~/devel/Core/" "~/.emacs.d/" "~/devel/BrowserTests/" "~/devel/Resources/" "~/devel/Sphinx/" "~/devel/C2/" "~/devel/Elf/" "~/devel/Builder/" "~/tmp/async-test/" "/tmp/test/" "~/devel/Cogbot/" "~/devel/bluegray/" "~/devel/pedestal-test/" "/tmp/clojure-mode/" \.\.\.)
