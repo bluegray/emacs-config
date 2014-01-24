@@ -1,8 +1,6 @@
 ;; Common shortcuts for cut/paste/undo
 (cua-mode t)
 
-; Some custom keybindings
-;(global-set-key (kbd "<f5>") 'eval-buffer)
 
 ;; Projectile shortcuts
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
@@ -11,13 +9,17 @@
 (define-key projectile-mode-map [?\s-g] 'projectile-grep)
 
 
-;; nrepl
-(defun new-nrepl1 () (interactive) (nrepl "localhost" 9991))
-(defun new-nrepl2 () (interactive) (nrepl "localhost" 9995))
-(global-set-key (kbd "<f9>")  'new-nrepl1)
-(global-set-key (kbd "<f10>") 'new-nrepl2)
+;; cider
+(defun new-cider1 () (interactive) (cider "localhost" 9991))
+(defun new-cider2 () (interactive) (cider "localhost" 9995))
+(global-set-key (kbd "<f9>")  'new-cider1)
+(global-set-key (kbd "<f10>") 'new-cider2)
+(global-set-key (kbd "M-<f9>") 'cider-quit)
 
-(define-key nrepl-interaction-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc)
+(eval-after-load "cider"
+  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+(eval-after-load "cider"
+  '(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
 
 
 ;; indent buffer
@@ -28,37 +30,8 @@
 (global-set-key (kbd "<f11>") 'indent-buffer)
 
 
-;; highlight and search shortcuts
-(global-set-key (kbd "C-3")
-  (lambda ()
-    (interactive)
-    (re-search-forward (format "\\b%s\\b" (thing-at-point 'word)))))
-
-(global-set-key (kbd "C-e") 'ahs-edit-mode)
-(global-set-key (kbd "C-<f3>") 'auto-highlight-symbol-mode)
-
-(global-set-key (kbd "<f2>") 'highlight-symbol-at-point)
-(global-set-key [f3] 'highlight-symbol-next)
-(global-set-key [(shift f3)] 'highlight-symbol-prev)
-
-
-;; buffers
-(defun switch-to-previous-buffer ()
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
-(global-set-key (kbd "<f7>") 'switch-to-previous-buffer)
-
 (add-hook 'lisp-mode-hook '(lambda ()
   (local-set-key (kbd "RET") 'newline-and-indent)))
-
-
-(defun nrepl-eldoc-space (n)
-  "Inserts a space and calls nrepl-eldoc to print arglists"
-  (interactive "p")
-  (self-insert-command n)
-  (when (nrepl-current-session)
-    (nrepl-eldoc)))
-(define-key clojure-mode-map (kbd "SPC") 'nrepl-eldoc-space)
 
 (defun multi-line-just-one-space (&optional n)
   "Multi-line version of `just-one-space': Delete all spaces and tabs
@@ -82,18 +55,33 @@
     (indent-sexp)))
 (global-set-key (kbd "C-SPC") 'multi-line-just-one-space)
 
-;; Some useful shortcuts from Robert
-(global-set-key (kbd "M-<f9>") 'nrepl-quit)
 
-;(define-key global-map [f11] (lambda () (interactive) (find-file "~/.lein/profiles.clj")))
-;(define-key global-map [f12] (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+;; highlight and search shortcuts
+(global-set-key (kbd "C-3")
+  (lambda ()
+    (interactive)
+    (re-search-forward (format "\\b%s\\b" (thing-at-point 'word)))))
 
-;(define-key global-map [f1] (lambda () (interactive) (find-file "~/Development/Server/dev/user.clj")))
-;(define-key global-map [f2] (lambda () (interactive) (find-file "~/Development/C2/project.clj")))
-;(define-key global-map [f3] (lambda () (interactive) (find-file "~/Development/Core/project.clj")))
-;(define-key global-map [f4] (lambda () (interactive) (find-file "~/Development/Builder/project.clj")))
+(global-set-key (kbd "C-e") 'ahs-edit-mode)
+(global-set-key (kbd "C-<f3>") 'auto-highlight-symbol-mode)
+
+(global-set-key (kbd "<f2>") 'highlight-symbol-at-point)
+(global-set-key (kbd "<f3>") 'highlight-symbol-next)
+(global-set-key (kbd "M-<f3>") 'highlight-symbol-prev)
 
 (global-set-key (kbd "<f6>") 'highlight-regexp)
 (global-set-key (kbd "M-<f6>") 'unhighlight-regexp)
 
 (global-set-key (kbd "<f5>") 'rgrep)
+
+
+
+;; buffers
+(defun switch-to-previous-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+(global-set-key (kbd "<f7>") 'switch-to-previous-buffer)
+
+(define-key global-map (kbd "<f11>") (lambda () (interactive) (find-file "~/.lein/profiles.clj")))
+(define-key global-map (kbd "<f12>") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+

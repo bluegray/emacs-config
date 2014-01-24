@@ -14,7 +14,7 @@
 (add-hook 'clojure-mode-hook
   (lambda ()
     (paredit-mode 1)))
-(add-hook 'nrepl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (show-paren-mode 1)
 (require 'highlight-parentheses)
@@ -73,12 +73,11 @@
       (setq cursor-type djcb-normal-cursor-type))))
 (add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
-
-;; nrepl
-(require 'nrepl)
-;(add-hook 'nrepl-interaction-mode-hook 'midje-mode)
-(setq nrepl-popup-stacktraces nil)
-(setq nrepl-use-pretty-printing 1)
+;; cider
+(require 'cider)
+(setq cider-repl-history-file "~/tmp/cider_history")
+(setq cider-repl-popup-stacktraces t)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 ;; auto complete
 (require 'auto-complete-config)
@@ -87,9 +86,8 @@
 
 ;; ac-nrepl
 (require 'ac-nrepl)
-(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'nrepl-mode))
+;(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+;(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
 
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))
