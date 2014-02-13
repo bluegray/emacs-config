@@ -86,8 +86,8 @@
 
 ;; ac-nrepl
 (require 'ac-nrepl)
-;(add-hook 'cider-mode-hook 'ac-nrepl-setup)
-;(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
+(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
 
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))

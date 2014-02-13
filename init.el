@@ -40,7 +40,7 @@
              (not (string= "project.clj" buffer-file-name))
              (not (string-match "^.*\.cljs$" buffer-file-name))
              (nrepl-current-session))
-    (nrepl-load-current-buffer)))
+    (cider-load-current-buffer)))
 (add-hook 'after-save-hook 'clojure-maybe-compile-and-load-file)
 
 
@@ -59,6 +59,23 @@
         " [Too big]"      ; directory too big
         " [Confirm]")))   ; confirm creation of new file or buffer
 
+;; sort ido filelist by mtime instead of alphabetically
+(add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
+(add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
+(defun ido-sort-mtime ()
+  (setq ido-temp-list
+        (sort ido-temp-list
+              (lambda (a b)
+                (time-less-p
+                 (sixth (file-attributes (concat ido-current-directory b)))
+                 (sixth (file-attributes (concat ido-current-directory a)))))))
+  (ido-to-end  ;; move . files to end (again)
+   (delq nil (mapcar
+              (lambda (x) (and (char-equal (string-to-char x) ?.) x))
+              ido-temp-list))))
+
+
+;; Load custom config files
 (load "addons")
 (load "shortcuts")
 (load "looks")
