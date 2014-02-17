@@ -76,7 +76,11 @@
 ;; cider
 (require 'cider)
 (setq cider-repl-history-file "~/tmp/cider_history")
-(setq cider-repl-popup-stacktraces t)
+(setq cider-repl-pop-to-buffer-on-connect nil)
+(setq cider-popup-stacktraces nil)
+(setq cider-repl-popup-stacktraces nil)
+(setq cider-repl-print-length 100)
+(setq cider-repl-result-prefix ";; => ")
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 ;; auto complete
@@ -104,3 +108,14 @@
 ;; git gutter
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
+
+
+;; clj-refactor
+(require 'clj-refactor)
+(add-hook 'clojure-mode-hook
+  (lambda ()
+    (clj-refactor-mode 1)
+    (cljr-add-keybindings-with-prefix "C-c C-m")))
+
+;; align-cljlet
+(require 'align-cljlet)

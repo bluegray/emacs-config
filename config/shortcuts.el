@@ -74,7 +74,7 @@
 
 (global-set-key (kbd "<f5>") 'rgrep)
 
-
+(global-set-key (kbd "<f8>") 'align-cljlet)
 
 ;; buffers
 (defun switch-to-previous-buffer ()
@@ -84,3 +84,19 @@
 
 (define-key global-map (kbd "<f11>") (lambda () (interactive) (find-file "~/.lein/profiles.clj")))
 (define-key global-map (kbd "<f12>") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+
+
+
+;; Define a custom minor mode to overide some shortcut keys
+(defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
+
+(define-key my-keys-minor-mode-map (kbd "C-M-q") 'align-cljlet)
+(define-key my-keys-minor-mode-map (kbd "M-w") 'cljr-cycle-coll)
+(define-key my-keys-minor-mode-map (kbd "M-a") 'cljr-cycle-stringlike)
+(define-key my-keys-minor-mode-map (kbd "M-e") 'cljr-thread)
+
+(define-minor-mode my-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  t " my-keys" 'my-keys-minor-mode-map)
+
+(my-keys-minor-mode 1)
