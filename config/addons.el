@@ -29,7 +29,8 @@
 (add-hook 'clojure-mode-hook
  (lambda ()
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|spy\\)" 1
-   font-lock-warning-face t)))))
+                                 font-lock-warning-face t)))
+  (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
 
 
 ;; powerline

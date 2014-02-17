@@ -94,7 +94,6 @@
 (define-key my-keys-minor-mode-map (kbd "M-w") 'cljr-cycle-coll)
 (define-key my-keys-minor-mode-map (kbd "M-a") 'cljr-cycle-stringlike)
 (define-key my-keys-minor-mode-map (kbd "M-e") 'cljr-thread)
-(define-key my-keys-minor-mode-map (kbd "RET") 'reindent-then-newline-and-indent)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
