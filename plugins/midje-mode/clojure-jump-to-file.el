@@ -15,7 +15,7 @@
 (defun clojure-midje-test-for (namespace)
   "Returns the path of the test file for the given namespace."
   (let* ((namespace (clojure-underscores-for-hyphens namespace))
-         (path (butlast (split-string "tdd_practice.core" "\\.")))
+         (path (butlast (split-string namespace "\\.")))
          (filename (concat "t_" (car (last (split-string namespace "\\."))))))
     (format "%stest/%s.clj"
             (file-name-as-directory

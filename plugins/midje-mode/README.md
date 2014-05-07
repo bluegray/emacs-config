@@ -24,3 +24,15 @@ your .emacs file:
 
     (require 'midje-mode)
     (require 'clojure-jump-to-file)
+
+# Contributors
+
+* Chris Bilson
+* Ye He
+* Andreas Liljeqvist
+* Dave Kincaid
+* Brian Marick
+* Dmitri Naumov
+* Steve Purcell
+* Jani Rahkola
+* "fmezas"
