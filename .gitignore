@@ -7,7 +7,6 @@ session.*
 auto-save-list
 tramp
 url
-elpa
 target
 swank
 repl-port

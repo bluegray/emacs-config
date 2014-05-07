@@ -1,6 +1,33 @@
 ;; Common shortcuts for cut/paste/undo
 (cua-mode t)
 
+;; Paredit
+;; (defvar electrify-return-match
+;;   "[\]}\)\"]"
+;;   "If this regexp matches the text after the cursor, do an
+;;   \"electric\" return.")
+
+;; (defun electrify-return-if-match (arg)
+;;   "If the text after the cursor matches `electrify-return-match' then
+;;   open and indent an empty line between the cursor and the text.  Move the
+;;   cursor to the new line."
+;;   (interactive "P")
+;;   (let ((case-fold-search nil))
+;;     (if (looking-at electrify-return-match)
+;;         (save-excursion (newline-and-indent)))
+;;     (newline arg)
+;;     (indent-according-to-mode)))
+
+;; (add-hook 'clojure-mode-hook
+;;           (lambda ()
+;;             (paredit-mode t)
+;;             (turn-on-eldoc-mode)
+;;             (eldoc-add-command
+;;              'paredit-backward-delete
+;;              'paredit-close-round)
+;;             (local-set-key (kbd "RET") 'electrify-return-if-match)
+;;             (eldoc-add-command 'electrify-return-if-match)
+;;             (show-paren-mode t)))
 
 ;; Projectile shortcuts
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
@@ -12,14 +39,14 @@
 ;; cider
 (defun new-cider1 () (interactive) (cider "localhost" 9991))
 (defun new-cider2 () (interactive) (cider "localhost" 9995))
+(defun new-cider3 () (interactive) (cider "localhost" 5656))
 (global-set-key (kbd "<f9>")  'new-cider1)
 (global-set-key (kbd "<f10>") 'new-cider2)
+(global-set-key (kbd "M-<f10>") 'new-cider3)
 (global-set-key (kbd "M-<f9>") 'cider-quit)
 
 (eval-after-load "cider"
   '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
-(eval-after-load "cider"
-  '(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
 
 
 ;; indent buffer
@@ -29,9 +56,6 @@
     (indent-region (point-min) (point-max) nil)))
 (global-set-key (kbd "<f11>") 'indent-buffer)
 
-
-(add-hook 'lisp-mode-hook '(lambda ()
-  (local-set-key (kbd "RET") 'newline-and-indent)))
 
 (defun multi-line-just-one-space (&optional n)
   "Multi-line version of `just-one-space': Delete all spaces and tabs
@@ -74,8 +98,6 @@
 
 (global-set-key (kbd "<f5>") 'rgrep)
 
-(global-set-key (kbd "<f8>") 'align-cljlet)
-
 ;; buffers
 (defun switch-to-previous-buffer ()
   (interactive)
@@ -84,6 +106,7 @@
 
 (define-key global-map (kbd "<f11>") (lambda () (interactive) (find-file "~/.lein/profiles.clj")))
 (define-key global-map (kbd "<f12>") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+(define-key global-map (kbd "M-<f12>") (lambda () (interactive) (find-file "~/.emacs.d/config/shortcuts.el")))
 
 
 
@@ -100,3 +123,6 @@
   t " my-keys" 'my-keys-minor-mode-map)
 
 (my-keys-minor-mode 1)
+
+(global-set-key (kbd "<f8>") (lambda () (interactive) (slamhound)))
+(global-set-key (kbd "<C-M-c>") (lambda () (interactive) (clojure-cheatsheet)))

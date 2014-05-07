@@ -32,16 +32,8 @@
 (setq css-indent-offset 2)
 
 
-;; Custom fns and hooks
-(defun clojure-maybe-compile-and-load-file ()
-  "Call function `nrepl-load-current-buffer' if there's an nrepl session.
-   Meant to be used in `after-save-hook'."
-  (when (and (eq major-mode 'clojure-mode)
-             (not (string= "project.clj" buffer-file-name))
-             (not (string-match "^.*\.cljs$" buffer-file-name))
-             (nrepl-current-session))
-    (cider-load-current-buffer)))
-(add-hook 'after-save-hook 'clojure-maybe-compile-and-load-file)
+;; Save Hooks
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 
 ;; IDO options
@@ -74,6 +66,11 @@
               (lambda (x) (and (char-equal (string-to-char x) ?.) x))
               ido-temp-list))))
 
+;; Just exit already
+(defadvice save-buffers-kill-emacs (around no-y-or-n activate)
+  (flet ((yes-or-no-p (&rest args) t)
+         (y-or-n-p (&rest args) t))
+    ad-do-it))
 
 ;; Load custom config files
 (load "addons")

@@ -13,11 +13,11 @@
 (global-hl-line-mode 1)
 
 
-;; make whitespace-mode use just basic coloring
+;; Highlight stuff in whitespace-mode
 (setq-default whitespace-line-column 90)
-(setq whitespace-style (quote
- (face spaces tabs trailing empty tab-mark
-  space-before-tab space-after-tab lines-tail)))
+(setq whitespace-style
+      '(face spaces tabs trailing empty tab-mark
+             space-before-tab space-after-tab lines-tail))
 (global-whitespace-mode 1)
 
 (custom-set-faces
@@ -38,4 +38,5 @@
  '(rainbow-delimiters-unmatched-face ((((background dark)) (:background "#dd3" :foreground "#ff090B"))))
  '(show-paren-match ((t (:foreground "red" :weight bold))))
  '(show-paren-mismatch ((t (:foreground "yellow" :weight bold))))
+ '(whitespace-line ((t (:foreground "#ffffbb"))))
  '(mode-line ((t (:foreground "#030303" :background "OliveDrab3" :box nil)))))
