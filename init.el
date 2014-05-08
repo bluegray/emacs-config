@@ -10,11 +10,11 @@
 (unless (server-running-p) (server-start))
 
 
-;; Package Manager
-(require 'package)
-(add-to-list 'package-archives
-  '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+;; ;; Package Manager
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;   '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (package-initialize)
 
 
 ;; emacs options
