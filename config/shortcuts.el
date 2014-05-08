@@ -56,7 +56,7 @@
   (interactive)
   (save-excursion
     (indent-region (point-min) (point-max) nil)))
-(global-set-key (kbd "<f11>") 'indent-buffer)
+(global-set-key (kbd "C-<f8>") 'indent-buffer)
 
 
 (defun multi-line-just-one-space (&optional n)
@@ -109,6 +109,7 @@
 (define-key global-map (kbd "<f11>") (lambda () (interactive) (find-file "~/.lein/profiles.clj")))
 (define-key global-map (kbd "<f12>") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (define-key global-map (kbd "M-<f12>") (lambda () (interactive) (find-file "~/.emacs.d/config/shortcuts.el")))
+(define-key global-map (kbd "C-<f12>") (lambda () (interactive) (find-file "~/.emacs.d/config/addons.el")))
 
 
 

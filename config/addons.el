@@ -6,9 +6,6 @@
 ;; git emacs
 (require 'git-emacs)
 
-;; smartparens
-;(load "init-smartparens")
-
 ;; paredit and parens
 (require 'paredit)
 (add-hook 'clojure-mode-hook
@@ -46,7 +43,6 @@
 
 ;; midge mode
 (require 'midje-mode)
-;;(add-hook 'clojure-mode-hook 'midje-mode)
 
 
 ;; powerline
@@ -69,7 +65,6 @@
 (setq djcb-read-only-color       "gray")
 ;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
 ;; (hbar. HEIGHT); see the docs for set-cursor-type
-
 (setq djcb-read-only-cursor-type 'hbar)
 (setq djcb-overwrite-color       "#ff8888")
 (setq djcb-overwrite-cursor-type 'box)
@@ -99,7 +94,7 @@
 (setq cider-repl-popup-stacktraces nil)
 (setq cider-repl-print-length 100)
 (setq cider-repl-result-prefix ";; => ")
-;;(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 
 ;; auto complete
