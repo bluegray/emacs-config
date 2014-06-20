@@ -44,6 +44,7 @@
 (global-set-key (kbd "<f10>") 'new-cider2)
 (global-set-key (kbd "M-<f10>") 'new-cider3)
 (global-set-key (kbd "M-<f9>") 'cider-quit)
+(global-set-key (kbd "C-<f9>") 'new-cider1)
 
 (eval-after-load "cider"
   '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
