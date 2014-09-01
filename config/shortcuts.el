@@ -47,9 +47,11 @@
 (global-set-key (kbd "C-<f9>") 'new-cider1)
 
 (eval-after-load "cider"
-  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+  '(define-key cider-mode-map (kbd "C-x C-d") 'ac-cider-popup-doc))
 (eval-after-load "cider"
-  '(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+  '(define-key cider-repl-mode-map (kbd "C-x C-d") 'ac-cider-popup-doc))
+(eval-after-load "cider"
+  '(define-key cider-repl-mode-map (kbd "C-<f10>") 'cider-visit-error-buffer))
 
 
 ;; indent buffer

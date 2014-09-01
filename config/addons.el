@@ -97,18 +97,26 @@
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 
+;; company
+;;(require 'company)
+;;(add-hook 'after-init-hook 'global-company-mode)
+
+
+;; ac-cider
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
+(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-repl-mode))
+
+
 ;; auto complete
 (require 'auto-complete-config)
 (ac-config-default)
 
 
-;; ac-nrepl
-(require 'ac-nrepl)
-(add-hook 'cider-mode-hook 'ac-nrepl-setup)
-(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-repl-mode))
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
-
+;; trigger autocomplete on TAB
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))
 (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
