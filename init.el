@@ -72,27 +72,6 @@
          (y-or-n-p (&rest args) t))
     ad-do-it))
 
-;; Custom clojure indentation
-(define-clojure-indent
-  ;; om & om-tools indenting
-  (display-name 'defun)
-  (init-state 'defun)
-  (will-mount 'defun)
-  (did-mount 'defun)
-  (will-unmount 'defun)
-  (render 'defun)
-  (render-state 'defun)
-  (should-update 'defun)
-  (will-update 'defun)
-  (will-receive-props 'defun)
-  (did-update 'defun)
-  ;; prismatic plumbing
-  (for-map 'defun)
-  (letk 'defun)
-  ;; compojure
-  (context 'defun)
-  ;;
-  (let-programs 'defun))
 
 ;; Load custom config files
 (load "addons")
