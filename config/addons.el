@@ -61,7 +61,7 @@
              (not (string-match ".*\\(project\\|profiles\\)\.clj$" buffer-file-name))
              (not (string-match "^.*\.cljs$" buffer-file-name))
              (nrepl-current-session))
-    (cider-load-current-buffer)))
+    (cider-load-buffer)))
 (add-hook 'after-save-hook 'clojure-maybe-compile-and-load-file)
 
 
