@@ -168,7 +168,7 @@
 
 ;; More addons
 (require 'align-cljlet)
-(require 'magit)
+;;(require 'magit)
 (require 'slamhound)
 (require 'helm)
 (require 'clojure-cheatsheet)
