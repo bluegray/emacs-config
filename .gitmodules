@@ -7,3 +7,21 @@
 [submodule "plugins/midje-mode"]
 	path = plugins/midje-mode
 	url = git://github.com/dnaumov/midje-mode.git
+[submodule "plugins/cider"]
+	path = plugins/cider
+	url = git@github.com:clojure-emacs/cider.git
+[submodule "plugins/clojure-mode"]
+	path = plugins/clojure-mode
+	url = git@github.com:clojure-emacs/clojure-mode.git
+[submodule "plugins/seq"]
+	path = plugins/seq
+	url = git@github.com:NicolasPetton/seq.el.git
+[submodule "plugins/ac-cider"]
+	path = plugins/ac-cider
+	url = git@github.com:clojure-emacs/ac-cider.git
+[submodule "plugins/dash"]
+	path = plugins/dash
+	url = git@github.com:magnars/dash.el.git
+[submodule "plugins/flx"]
+	path = plugins/flx
+	url = git@github.com:lewang/flx.git

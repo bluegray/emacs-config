@@ -40,9 +40,12 @@
 (defun new-cider1 () (interactive) (cider-connect "localhost" 7888))
 (defun new-cider2 () (interactive) (cider-connect "localhost" 9995))
 (defun new-cider3 () (interactive) (cider-connect "localhost" 5656))
+(defun new-cider4 () (interactive) (cider-connect "localhost" 9991))
+
 (global-set-key (kbd "<f9>")  'new-cider1)
 (global-set-key (kbd "<f10>") 'new-cider2)
 (global-set-key (kbd "M-<f10>") 'new-cider3)
+(global-set-key (kbd "S-C-M-<f9>") 'new-cider4)
 (global-set-key (kbd "M-<f9>") 'cider-quit)
 (global-set-key (kbd "C-<f9>") 'cider-jack-in)
 

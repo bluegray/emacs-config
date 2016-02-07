@@ -118,6 +118,8 @@
 (setq cider-repl-popup-stacktraces nil)
 (setq cider-repl-print-length 100)
 (setq cider-repl-result-prefix ";; => ")
+(setq cider-prompt-for-symbol nil)
+(setq nrepl-buffer-name-show-port t)
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 
