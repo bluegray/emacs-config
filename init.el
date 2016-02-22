@@ -70,10 +70,10 @@
               ido-temp-list))))
 
 ;; Just exit already
-(defadvice save-buffers-kill-emacs (around no-y-or-n activate)
-  (flet ((yes-or-no-p (&rest args) t)
-         (y-or-n-p (&rest args) t))
-    ad-do-it))
+;;(defadvice save-buffers-kill-emacs (around no-y-or-n activate)
+;;  (flet ((yes-or-no-p (&rest args) t)
+;;         (y-or-n-p (&rest args) t))
+;;    ad-do-it))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
