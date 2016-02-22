@@ -162,11 +162,13 @@
 
 ;; clj-refactor
 (require 'clj-refactor)
-(add-hook 'clojure-mode-hook
-  (lambda ()
+(defun clj-refactor-clojure-mode-hook ()
     (clj-refactor-mode 1)
-    (cljr-add-keybindings-with-prefix "C-c C-m")))
-
+    (yas-minor-mode 1) ; for adding require/use/import statements
+    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+    (cljr-add-keybindings-with-prefix "C-c C-m"))
+(add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode-hook)
+;;(setq cljr-suppress-middleware-warnings t)
 
 ;; More addons
 (require 'align-cljlet)
