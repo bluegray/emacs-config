@@ -135,3 +135,10 @@
 
 (global-set-key (kbd "<f8>") (lambda () (interactive) (slamhound)))
 (global-set-key (kbd "<C-M-c>") (lambda () (interactive) (clojure-cheatsheet)))
+
+(global-set-key (kbd "C-<kp-right>") 'paredit-forward)
+(global-set-key (kbd "C-<kp-left>") 'paredit-backward)
+(global-set-key (kbd "C-<kp-up>") 'paredit-backward)
+(global-set-key (kbd "C-<kp-down>") 'paredit-forward-down)
+(global-set-key (kbd "C-<kp-prior>") 'beginning-of-buffer)
+(global-set-key (kbd "C-<kp-next>") 'end-of-buffer)
