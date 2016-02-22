@@ -55,3 +55,6 @@
 [submodule "plugins/rainbow-delimiters"]
 	path = plugins/rainbow-delimiters
 	url = git@github.com:Fanael/rainbow-delimiters.git
+[submodule "plugins/powerline"]
+	path = plugins/powerline
+	url = git@github.com:milkypostman/powerline.git

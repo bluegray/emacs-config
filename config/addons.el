@@ -70,7 +70,8 @@
 
 
 ;; powerline
-;;(require 'powerline)
+(require 'powerline)
+(powerline-center-theme)
 
 
 ;; projectile
