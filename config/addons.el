@@ -4,7 +4,7 @@
 (column-number-mode 1)
 
 ;; git emacs
-(require 'git-emacs)
+(require 'git-emacs )
 
 ;; paredit and parens
 (require 'paredit)
@@ -14,10 +14,10 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
 (show-paren-mode 1)
-(require 'highlight-parentheses)
-(define-globalized-minor-mode global-highlight-parentheses-mode highlight-parentheses-mode
-  (lambda nil (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
+;;(require 'highlight-parentheses)
+;;(define-globalized-minor-mode global-highlight-parentheses-mode highlight-parentheses-mode
+;;  (lambda nil (highlight-parentheses-mode t)))
+;;(global-highlight-parentheses-mode t)
 
 ;; clojure mode
 (require 'clojure-mode)
@@ -66,11 +66,11 @@
 
 
 ;; midge mode
-(require 'midje-mode)
+;;(require 'midje-mode)
 
 
 ;; powerline
-(require 'powerline)
+;;(require 'powerline)
 
 
 ;; projectile
@@ -129,17 +129,17 @@
 
 
 ;; ac-cider
-(require 'ac-cider)
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-repl-mode))
+;;(require 'ac-cider)
+;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+;;(add-hook 'cider-mode-hook 'ac-cider-setup)
+;;(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+;;(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
+;;(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-repl-mode))
 
 
 ;; auto complete
-(require 'auto-complete-config)
-(ac-config-default)
+;;(require 'auto-complete-config)
+;;(ac-config-default)
 
 
 ;; trigger autocomplete on TAB
@@ -151,28 +151,28 @@
 
 
 ;; auto highlight and highlight
-(require 'auto-highlight-symbol)
-(require 'highlight-symbol)
+;;(require 'auto-highlight-symbol)
+;;(require 'highlight-symbol)
 
 
 ;; git gutter
-(require 'git-gutter-fringe)
-(global-git-gutter-mode t)
+;;(require 'git-gutter-fringe)
+;;(global-git-gutter-mode t)
 
 
 ;; clj-refactor
-(require 'clj-refactor)
-(defun clj-refactor-clojure-mode-hook ()
-    (clj-refactor-mode 1)
-    (yas-minor-mode 1) ; for adding require/use/import statements
-    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-    (cljr-add-keybindings-with-prefix "C-c C-m"))
-(add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode-hook)
+;;(require 'clj-refactor)
+;;(defun clj-refactor-clojure-mode-hook ()
+;;    (clj-refactor-mode 1)
+;;    (yas-minor-mode 1) ; for adding require/use/import statements
+;;    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+;;    (cljr-add-keybindings-with-prefix "C-c C-m"))
+;;(add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode-hook)
 ;;(setq cljr-suppress-middleware-warnings t)
 
 ;; More addons
-(require 'align-cljlet)
+;;(require 'align-cljlet)
 ;;(require 'magit)
-(require 'slamhound)
-(require 'helm)
-(require 'clojure-cheatsheet)
+;;(require 'slamhound)
+;;(require 'helm)
+;;(require 'clojure-cheatsheet)

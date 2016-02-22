@@ -1,14 +1,11 @@
 ;; Set the theme
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-   (color-theme-initialize)
-   (color-theme-desert)))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'desert t)
 
 (set-default-font "ProggySquareTTSZ 16")
 
 (require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode 1)
+(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 
 (global-hl-line-mode 1)
 

@@ -40,3 +40,18 @@
 [submodule "plugins/hydra"]
 	path = plugins/hydra
 	url = git@github.com:abo-abo/hydra.git
+[submodule "plugins/git-emacs"]
+	path = plugins/git-emacs
+	url = git@github.com:tsgates/git-emacs.git
+[submodule "plugins/paredit"]
+	path = plugins/paredit
+	url = git@github.com:emacsmirror/paredit.git
+[submodule "plugins/spinner"]
+	path = plugins/spinner
+	url = git@github.com:Malabarba/spinner.el.git
+[submodule "plugins/projectile"]
+	path = plugins/projectile
+	url = git@github.com:bbatsov/projectile.git
+[submodule "plugins/rainbow-delimiters"]
+	path = plugins/rainbow-delimiters
+	url = git@github.com:Fanael/rainbow-delimiters.git
