@@ -76,7 +76,12 @@
     ad-do-it))
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(custom-safe-themes (quote ("58ddafd4a2ef34898ce6184a8f1d4545d05bb0c5b56d920810ba07cbc60d684b" default)))
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
  '(hl-paren-colors (quote ("#fff")))
  '(nrepl-host "localhost")
@@ -85,3 +90,27 @@
 
 ;; Common shortcuts for cut/paste/undo
 (cua-mode t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-property ((t (:inherit font-lock-variable-name-face :foreground "#ffff88"))))
+ '(font-lock-string-face ((t (:foreground "#ffd0d0"))))
+ '(font-lock-warning-face ((t (:background "gold" :foreground "black" :weight bold))))
+ '(hl-line ((t (:background "#2a2a2a"))))
+ '(hl-paren-face ((t (:weight bold))) t)
+ '(mode-line ((t (:foreground "#030303" :background "OliveDrab3" :box nil))))
+ '(rainbow-delimiters-depth-1-face ((((background dark)) (:foreground "#f00"))))
+ '(rainbow-delimiters-depth-2-face ((((background dark)) (:foreground "#66e"))))
+ '(rainbow-delimiters-depth-3-face ((((background dark)) (:foreground "#e66"))))
+ '(rainbow-delimiters-depth-4-face ((((background dark)) (:foreground "#6f6"))))
+ '(rainbow-delimiters-depth-5-face ((((background dark)) (:foreground "#ee6"))))
+ '(rainbow-delimiters-depth-6-face ((((background dark)) (:foreground "#6ee"))))
+ '(rainbow-delimiters-depth-7-face ((((background dark)) (:foreground "#e6e"))))
+ '(rainbow-delimiters-depth-8-face ((((background dark)) (:foreground "#ff0"))))
+ '(rainbow-delimiters-depth-9-face ((((background dark)) (:foreground "#0f0"))))
+ '(rainbow-delimiters-unmatched-face ((((background dark)) (:background "#dd3" :foreground "#ff090B"))))
+ '(show-paren-match ((t (:foreground "red" :weight bold))))
+ '(show-paren-mismatch ((t (:foreground "yellow" :weight bold))))
+ '(whitespace-line ((t (:foreground "#ffffbb")))))
