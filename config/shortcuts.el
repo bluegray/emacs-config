@@ -1,6 +1,3 @@
-;; Common shortcuts for cut/paste/undo
-(cua-mode t)
-
 ;; Paredit
 ;; (defvar electrify-return-match
 ;;   "[\]}\)\"]"

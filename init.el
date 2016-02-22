@@ -1,7 +1,6 @@
 ;; Add plugins and config folders to load path
-(let ((default-directory "~/.emacs.d/plugins/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-to-load-path '("../config"))
+(let ((default-directory "~/.emacs.d/"))
+  (normal-top-level-add-to-load-path '("config/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 
@@ -9,13 +8,17 @@
 (load "server")
 (unless (server-running-p) (server-start))
 
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
 
-;; ;; Package Manager
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;   '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; (package-initialize)
-
+;; Load custom config files
+;;(load "addons")
+;;(load "shortcuts")
+(load "looks")
 
 ;; emacs options
 (global-auto-revert-mode t)
@@ -72,13 +75,6 @@
          (y-or-n-p (&rest args) t))
     ad-do-it))
 
-
-;; Load custom config files
-(load "addons")
-(load "shortcuts")
-(load "looks")
-
-
 (custom-set-variables
  '(column-number-mode t)
  '(hl-paren-background-colors (quote ("#666" "#444" "#444" "#444" "#444" "#444" "#444")))
@@ -86,3 +82,6 @@
  '(nrepl-host "localhost")
  '(nrepl-port "9991")
  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 88 96 104 112 120))))
+
+;; Common shortcuts for cut/paste/undo
+(cua-mode t)
