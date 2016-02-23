@@ -159,6 +159,11 @@
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
 
+;; yassnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"))
+(yas-global-mode 1)
 
 ;; clj-refactor
 (require 'clj-refactor)
