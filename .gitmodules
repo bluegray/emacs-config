@@ -119,3 +119,6 @@
 [submodule "plugins/pkg-info"]
 	path = plugins/pkg-info
 	url = git@github.com:lunaryorn/pkg-info.el.git
+[submodule "plugins/epl"]
+	path = plugins/epl
+	url = git@github.com:cask/epl.git
