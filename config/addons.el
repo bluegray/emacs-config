@@ -153,12 +153,12 @@
 
 ;; auto highlight and highlight
 ;;(require 'auto-highlight-symbol)
-;;(require 'highlight-symbol)
+(require 'highlight-symbol)
 
 
 ;; git gutter
-;;(require 'git-gutter-fringe)
-;;(global-git-gutter-mode t)
+(require 'git-gutter-fringe)
+(global-git-gutter-mode t)
 
 
 ;; clj-refactor

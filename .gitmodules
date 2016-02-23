@@ -58,3 +58,15 @@
 [submodule "plugins/powerline"]
 	path = plugins/powerline
 	url = git@github.com:milkypostman/powerline.git
+[submodule "plugins/emacs-git-gutter-fringe"]
+	path = plugins/emacs-git-gutter-fringe
+	url = git@github.com:syohex/emacs-git-gutter-fringe.git
+[submodule "plugins/highlight-symbol"]
+	path = plugins/highlight-symbol
+	url = git@github.com:nschum/highlight-symbol.el.git
+[submodule "plugins/emacs-git-gutter"]
+	path = plugins/emacs-git-gutter
+	url = git@github.com:syohex/emacs-git-gutter.git
+[submodule "plugins/fringe-helper"]
+	path = plugins/fringe-helper
+	url = git@github.com:nschum/fringe-helper.el.git
