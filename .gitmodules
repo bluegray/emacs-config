@@ -86,9 +86,6 @@
 [submodule "ac-nrepl"]
 	path = ac-nrepl
 	url = git://github.com/purcell/ac-nrepl.git
-[submodule "plugins/paredit"]
-	path = plugins/paredit
-	url = git@github.com:emacsmirror/paredit.git
 [submodule "plugins/powerline"]
 	path = plugins/powerline
 	url = git@github.com:milkypostman/powerline.git
@@ -119,3 +116,9 @@
 [submodule "plugins/rainbow-delimiters"]
 	path = plugins/rainbow-delimiters
 	url = git@github.com:Fanael/rainbow-delimiters.git
+[submodule "paredit"]
+	path = paredit
+	url = git@github.com:emacsmirror/paredit.git
+[submodule "plugins/paredit"]
+	path = plugins/paredit
+	url = git@github.com:emacsmirror/paredit.git
