@@ -1,6 +1,7 @@
 ;; Common shortcuts for cut/paste/undo
 (cua-mode t)
 
+
 ;; Paredit
 ;; (defvar electrify-return-match
 ;;   "[\]}\)\"]"
@@ -28,6 +29,7 @@
 ;;             (local-set-key (kbd "RET") 'electrify-return-if-match)
 ;;             (eldoc-add-command 'electrify-return-if-match)
 ;;             (show-paren-mode t)))
+
 
 ;; Projectile shortcuts
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
@@ -65,6 +67,7 @@
 (global-set-key (kbd "C-<f8>") 'indent-buffer)
 
 
+;; Collapse space
 (defun multi-line-just-one-space (&optional n)
   "Multi-line version of `just-one-space': Delete all spaces and tabs
   around point, leaving one space (or N spaces). When in clojure or
@@ -105,6 +108,7 @@
 (global-set-key (kbd "M-<f6>") 'unhighlight-regexp)
 
 (global-set-key (kbd "<f5>") 'rgrep)
+
 
 ;; buffers
 (defun switch-to-previous-buffer ()

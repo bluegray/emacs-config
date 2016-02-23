@@ -10,13 +10,6 @@
 (unless (server-running-p) (server-start))
 
 
-;; ;; Package Manager
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;   '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; (package-initialize)
-
-
 ;; emacs options
 (global-auto-revert-mode t)
 (setq inhibit-splash-screen t)
@@ -65,6 +58,7 @@
    (delq nil (mapcar
               (lambda (x) (and (char-equal (string-to-char x) ?.) x))
               ido-temp-list))))
+
 
 ;; Just exit already
 (defadvice save-buffers-kill-emacs (around no-y-or-n activate)

@@ -3,8 +3,10 @@
 (global-linum-mode 1)
 (column-number-mode 1)
 
+
 ;; git emacs
 (require 'git-emacs)
+
 
 ;; paredit and parens
 (require 'paredit)
@@ -18,6 +20,7 @@
 (define-globalized-minor-mode global-highlight-parentheses-mode highlight-parentheses-mode
   (lambda nil (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
+
 
 ;; clojure mode
 (require 'clojure-mode)
@@ -69,11 +72,6 @@
 (require 'midje-mode)
 
 
-;; powerline
-(require 'powerline)
-(powerline-center-theme)
-
-
 ;; projectile
 (require 'projectile)
 (projectile-global-mode)
@@ -83,32 +81,6 @@
 (flx-ido-mode 1)
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
-
-
-;; Change cursor color according to mode; inspired by
-;; http://www.emacswiki.org/emacs/ChangingCursorDynamically
-(setq djcb-read-only-color       "gray")
-;; valid values are t, nil, box, hollow, bar, (bar . WIDTH), hbar,
-;; (hbar. HEIGHT); see the docs for set-cursor-type
-(setq djcb-read-only-cursor-type 'hbar)
-(setq djcb-overwrite-color       "#ff8888")
-(setq djcb-overwrite-cursor-type 'box)
-(setq djcb-normal-color          "#c4f2ff")
-(setq djcb-normal-cursor-type    'bar)
-
-(defun djcb-set-cursor-according-to-mode ()
-  "change cursor color and type according to some minor modes."
-  (cond
-    (buffer-read-only
-      (set-cursor-color djcb-read-only-color)
-      (setq cursor-type djcb-read-only-cursor-type))
-    (overwrite-mode
-      (set-cursor-color djcb-overwrite-color)
-      (setq cursor-type djcb-overwrite-cursor-type))
-    (t
-      (set-cursor-color djcb-normal-color)
-      (setq cursor-type djcb-normal-cursor-type))))
-(add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
 
 ;; cider
@@ -160,11 +132,13 @@
 (require 'git-gutter-fringe)
 (global-git-gutter-mode t)
 
+
 ;; yassnippet
 (require 'yasnippet)
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
+
 
 ;; clj-refactor
 (require 'clj-refactor)
@@ -176,9 +150,8 @@
 (add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode-hook)
 ;;(setq cljr-suppress-middleware-warnings t)
 
+
 ;; More addons
 (require 'align-cljlet)
 ;;(require 'magit)
 ;;(require 'slamhound)
-;;(require 'helm)
-;;(require 'clojure-cheatsheet)
