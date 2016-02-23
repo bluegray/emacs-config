@@ -71,6 +71,7 @@
 
 ;; powerline
 (require 'powerline)
+(powerline-center-theme)
 
 
 ;; projectile
@@ -178,6 +179,6 @@
 ;; More addons
 (require 'align-cljlet)
 ;;(require 'magit)
-(require 'slamhound)
-(require 'helm)
-(require 'clojure-cheatsheet)
+;;(require 'slamhound)
+;;(require 'helm)
+;;(require 'clojure-cheatsheet)
