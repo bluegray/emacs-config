@@ -58,12 +58,11 @@
 
 
 (defun clojure-maybe-compile-and-load-file ()
-  "Call function `nrepl-load-current-buffer' if there's an nrepl session.
+  "Call function 'cider-load-buffer' for clojure files.
    Meant to be used in `after-save-hook'."
   (when (and (eq major-mode 'clojure-mode)
              (not (string-match ".*\\(project\\|profiles\\)\.clj$" buffer-file-name))
-             (not (string-match "^.*\.cljs$" buffer-file-name))
-             (nrepl-current-session))
+             (not (string-match "^.*\.cljs$" buffer-file-name)))
     (cider-load-buffer)))
 (add-hook 'after-save-hook 'clojure-maybe-compile-and-load-file)
 
@@ -92,6 +91,7 @@
 (setq cider-repl-print-length 100)
 (setq cider-repl-result-prefix ";; => ")
 (setq cider-prompt-for-symbol nil)
+(setq cider-prompt-for-project-on-connect nil)
 (setq nrepl-buffer-name-show-port t)
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 

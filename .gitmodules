@@ -47,9 +47,6 @@
 	path = plugins/yasnippet
 	url = git@github.com:capitaomorte/yasnippet.git
 
-[submodule "plugins/ac-nrepl"]
-	path = plugins/ac-nrepl
-	url = git://github.com/purcell/ac-nrepl.git
 	[submodule "plugins/ert"]
 		path = plugins/ert
 	url = git://github.com/ohler/ert.git
@@ -83,9 +80,6 @@
 	[submodule "plugins/spinner"]
 	path = plugins/spinner
 	url = git@github.com:Malabarba/spinner.el.git
-[submodule "ac-nrepl"]
-	path = ac-nrepl
-	url = git://github.com/purcell/ac-nrepl.git
 [submodule "plugins/powerline"]
 	path = plugins/powerline
 	url = git@github.com:milkypostman/powerline.git
@@ -122,3 +116,6 @@
 [submodule "plugins/paredit"]
 	path = plugins/paredit
 	url = git@github.com:emacsmirror/paredit.git
+[submodule "plugins/pkg-info"]
+	path = plugins/pkg-info
+	url = git@github.com:lunaryorn/pkg-info.el.git

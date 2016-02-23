@@ -39,10 +39,10 @@
 
 
 ;; cider
-(defun new-cider1 () (interactive) (cider-connect "localhost" 7888 "~/devel/Server"))
-(defun new-cider2 () (interactive) (cider-connect "localhost" 9995 "~/devel/Server"))
-(defun new-cider3 () (interactive) (cider-connect "localhost" 5656 "~/devel/Server"))
-(defun new-cider4 () (interactive) (cider-connect "localhost" 9991 "~/devel/Server"))
+(defun new-cider1 () (interactive) (cider-connect "localhost" 7888))
+(defun new-cider2 () (interactive) (cider-connect "localhost" 9995))
+(defun new-cider3 () (interactive) (cider-connect "localhost" 5656))
+(defun new-cider4 () (interactive) (cider-connect "localhost" 9991))
 
 (global-set-key (kbd "<f9>")  'new-cider1)
 (global-set-key (kbd "<f10>") 'new-cider2)
