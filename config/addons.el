@@ -11,9 +11,11 @@
 ;; paredit and parens
 (require 'paredit)
 (add-hook 'clojure-mode-hook
-  (lambda ()
-    (paredit-mode 1)))
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
+          (lambda ()
+            (paredit-mode 1)))
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (paredit-mode 1)))
 
 (show-paren-mode 1)
 (require 'highlight-parentheses)
@@ -29,10 +31,10 @@
 (add-to-list 'auto-mode-alist '("\\.hiccup\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode))
 (add-hook 'clojure-mode-hook
- (lambda ()
-  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|spy\\)" 1
-                                 font-lock-warning-face t)))
-  (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
+          (lambda ()
+            (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|spy\\)" 1
+                                           font-lock-warning-face t)))
+            (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)))
 
 ;; Custom clojure indentation
 (define-clojure-indent
@@ -143,10 +145,10 @@
 ;; clj-refactor
 (require 'clj-refactor)
 (defun clj-refactor-clojure-mode-hook ()
-    (clj-refactor-mode 1)
-    (yas-minor-mode 1) ; for adding require/use/import statements
-    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-    (cljr-add-keybindings-with-prefix "C-c C-m"))
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1) ; for adding require/use/import statements
+  ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 (add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode-hook)
 ;;(setq cljr-suppress-middleware-warnings t)
 
