@@ -25,18 +25,21 @@
 [submodule "plugins/flx"]
 	path = plugins/flx
 	url = git@github.com:lewang/flx.git
-[submodule "plugins/clj-refactor"]
-	path = plugins/clj-refactor
-	url = https://github.com/clojure-emacs/clj-refactor.el
-[submodule "plugins/edn"]
-	path = plugins/edn
-	url = git@github.com:expez/edn.el.git
-[submodule "plugins/peg"]
-	path = plugins/peg
-	url = git@github.com:emacsmirror/peg.git
 [submodule "plugins/jump"]
 	path = plugins/jump
 	url = git@github.com:eschulte/jump.el.git
 [submodule "plugins/hydra"]
 	path = plugins/hydra
+	url = git@github.com:abo-abo/hydra.git
+[submodule "plugins/clj-refactor"]
+	path = plugins/clj-refactor
+	url = git@github.com:clojure-emacs/clj-refactor.el.git
+[submodule "plugins/peg"]
+	path = plugins/peg
+	url = git@github.com:emacsmirror/peg.git
+[submodule "plugins/edn"]
+	path = plugins/edn
+	url = git@github.com:expez/edn.el.git
+[submodule "plugins/plugins/hydra"]
+	path = plugins/plugins/hydra
 	url = git@github.com:abo-abo/hydra.git
