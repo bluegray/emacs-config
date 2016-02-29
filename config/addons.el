@@ -151,6 +151,7 @@
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 (add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode-hook)
 ;;(setq cljr-suppress-middleware-warnings t)
+(setq cljr-favor-prefix-notation nil)
 
 
 ;; More addons
