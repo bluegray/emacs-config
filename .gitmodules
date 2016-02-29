@@ -54,7 +54,7 @@
 		path = plugins/fuzzy-el
 	url = git://github.com/auto-complete/fuzzy-el.git
 	[submodule "plugins/auto-highlight-symbol"]
-		path = plugins/auto-highlight-symbol
+	path = plugins/auto-highlight-symbol
 	url = git@github.com:emacsmirror/auto-highlight-symbol.git
 	[submodule "plugins/emacs-git-gutter"]
 	path = plugins/emacs-git-gutter
@@ -89,9 +89,6 @@
 [submodule "plugins/popup-el"]
 	path = plugins/popup-el
 	url = git@github.com:auto-complete/popup-el.git
-[submodule "plugins/auto-highlight-symbo"]
-	path = plugins/auto-highlight-symbo
-	url = git@github.com:emacsmirror/auto-highlight-symbol.git
 [submodule "plugins/highlight-symbol"]
 	path = plugins/highlight-symbol
 	url = git@github.com:nschum/highlight-symbol.el.git
