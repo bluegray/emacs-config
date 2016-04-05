@@ -26,8 +26,8 @@
 
 ;; clojure mode
 (require 'clojure-mode)
-(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
+;;(add-to-list 'auto-mode-alist '("\\.cljs\\'" . clojure-mode))
+;;(add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.hiccup\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode))
 (setq clojure-align-forms-automatically t)
