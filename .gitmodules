@@ -4,9 +4,6 @@
 [submodule "plugins/magit"]
 	path = plugins/magit
 	url = git://github.com/magit/magit.git
-[submodule "plugins/midje-mode"]
-	path = plugins/midje-mode
-	url = git://github.com/dnaumov/midje-mode.git
 [submodule "plugins/cider"]
 	path = plugins/cider
 	url = git@github.com:clojure-emacs/cider.git
@@ -119,3 +116,6 @@
 [submodule "plugins/epl"]
 	path = plugins/epl
 	url = git@github.com:cask/epl.git
+[submodule "plugins/midje-mode"]
+	path = plugins/midje-mode
+	url = git://github.com/dnaumov/midje-mode.git
