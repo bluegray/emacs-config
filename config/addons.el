@@ -30,6 +30,7 @@
 (add-to-list 'auto-mode-alist '("\\.cljx\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.hiccup\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode))
+(setq clojure-align-forms-automatically t)
 (add-hook 'clojure-mode-hook
           (lambda ()
             (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|spy\\)" 1
