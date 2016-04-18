@@ -39,10 +39,10 @@
 
 
 ;; cider
-(defun new-cider1 () (interactive) (cider-connect "localhost" 7888))
+(defun new-cider1 () (interactive) (cider-connect "localhost" 9991))
 (defun new-cider2 () (interactive) (cider-connect "localhost" 9995))
 (defun new-cider3 () (interactive) (cider-connect "localhost" 5656))
-(defun new-cider4 () (interactive) (cider-connect "localhost" 9991))
+(defun new-cider4 () (interactive) (cider-connect "localhost" 7888))
 
 (global-set-key (kbd "<f9>")  'new-cider1)
 (global-set-key (kbd "<f10>") 'new-cider2)
@@ -63,7 +63,7 @@
 (defun indent-buffer ()
   (interactive)
   (save-excursion
-    (indent-region (point-min) (point-max) nil)))
+    (indent-region (point-min) (point-max))))
 (global-set-key (kbd "C-<f8>") 'indent-buffer)
 
 
@@ -126,7 +126,9 @@
 ;; Define a custom minor mode to overide some shortcut keys
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
-(define-key my-keys-minor-mode-map (kbd "C-M-q") 'align-cljlet)
+;;(define-key my-keys-minor-mode-map (kbd "C-M-q") 'align-cljlet)
+
+(define-key my-keys-minor-mode-map (kbd "M-p") 'clojure-align)
 (define-key my-keys-minor-mode-map (kbd "M-w") 'cljr-cycle-coll)
 (define-key my-keys-minor-mode-map (kbd "M-a") 'cljr-cycle-stringlike)
 (define-key my-keys-minor-mode-map (kbd "M-e") 'cljr-thread)
@@ -137,8 +139,7 @@
 
 (my-keys-minor-mode 1)
 
-(global-set-key (kbd "<f8>") (lambda () (interactive) (slamhound)))
-(global-set-key (kbd "<C-M-c>") (lambda () (interactive) (clojure-cheatsheet)))
+(global-set-key (kbd "<f8>") (lambda () (interactive) (cljr-clean-ns)))
 
 (global-set-key (kbd "C-<kp-right>") 'paredit-forward)
 (global-set-key (kbd "C-<kp-left>") 'paredit-backward)
