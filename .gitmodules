@@ -119,3 +119,6 @@
 [submodule "plugins/midje-mode"]
 	path = plugins/midje-mode
 	url = git://github.com/dnaumov/midje-mode.git
+[submodule "plugins/floobits"]
+	path = plugins/floobits
+	url = https://github.com/Floobits/floobits-emacs.git

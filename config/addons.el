@@ -159,3 +159,7 @@
 (require 'align-cljlet)
 ;;(require 'magit)
 ;;(require 'slamhound)
+
+
+;;floobits
+(require 'floobits)
