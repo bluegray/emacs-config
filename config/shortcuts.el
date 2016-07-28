@@ -126,9 +126,7 @@
 ;; Define a custom minor mode to overide some shortcut keys
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
-;;(define-key my-keys-minor-mode-map (kbd "C-M-q") 'align-cljlet)
-
-(define-key my-keys-minor-mode-map (kbd "M-p") 'clojure-align)
+(define-key my-keys-minor-mode-map (kbd "C-M-q") 'clojure-align)
 (define-key my-keys-minor-mode-map (kbd "M-w") 'cljr-cycle-coll)
 (define-key my-keys-minor-mode-map (kbd "M-a") 'cljr-cycle-stringlike)
 (define-key my-keys-minor-mode-map (kbd "M-e") 'cljr-thread)
