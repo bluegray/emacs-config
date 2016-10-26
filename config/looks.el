@@ -2,7 +2,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'bluegray t)
 
-(set-default-font "ProggySquareTTSZ 16")
+(set-default-font "Ubuntu Mono 13")
 
 
 ;; Rainbow parens

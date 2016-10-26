@@ -39,17 +39,21 @@
 
 
 ;; cider
-(defun new-cider1 () (interactive) (cider-connect "localhost" 9991))
-(defun new-cider2 () (interactive) (cider-connect "localhost" 9995))
-(defun new-cider3 () (interactive) (cider-connect "localhost" 5656))
-(defun new-cider4 () (interactive) (cider-connect "localhost" 7888))
+(defun new-cider-server-lrh () (interactive) (cider-connect "localhost" 9991))
+(defun new-cider-ssh-remote-repl () (interactive) (cider-connect "localhost" 9995))
+(defun new-cider-server-repl () (interactive) (cider-connect "localhost" 7888))
+(defun new-cider-bluegray-repl () (interactive) (cider-connect "localhost" 5656))
 
-(global-set-key (kbd "<f9>")  'new-cider1)
-(global-set-key (kbd "<f10>") 'new-cider2)
-(global-set-key (kbd "M-<f10>") 'new-cider3)
-(global-set-key (kbd "S-C-M-<f9>") 'new-cider4)
-(global-set-key (kbd "M-<f9>") 'cider-quit)
+(global-set-key (kbd "<f9>")  'new-cider-server-lrh)
+(global-set-key (kbd "M-<f9>") 'new-cider-ssh-remote-repl)
+(global-set-key (kbd "S-C-M-<f9>") 'new-cider-server-repl)
+(global-set-key (kbd "M-<f10>") 'new-cider-bluegray-repl)
+
+(global-set-key (kbd "<f10>")  'cider-connect)
+(global-set-key (kbd "C-S-<f9>") 'cider-quit)
 (global-set-key (kbd "C-<f9>") 'cider-jack-in)
+
+(global-set-key (kbd "C-S-i") 'cider-inspect-last-result)
 
 (eval-after-load "cider"
   '(define-key cider-mode-map (kbd "C-x C-d") 'ac-cider-popup-doc))
@@ -126,11 +130,9 @@
 ;; Define a custom minor mode to overide some shortcut keys
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
-;;(define-key my-keys-minor-mode-map (kbd "C-M-q") 'align-cljlet)
-
-(define-key my-keys-minor-mode-map (kbd "M-p") 'clojure-align)
+(define-key my-keys-minor-mode-map (kbd "C-M-q") 'clojure-align)
 (define-key my-keys-minor-mode-map (kbd "M-w") 'cljr-cycle-coll)
-(define-key my-keys-minor-mode-map (kbd "M-a") 'cljr-cycle-stringlike)
+(define-key my-keys-minor-mode-map (kbd "M-a") 'clojure-toggle-keyword-string)
 (define-key my-keys-minor-mode-map (kbd "M-e") 'cljr-thread)
 
 (define-minor-mode my-keys-minor-mode
