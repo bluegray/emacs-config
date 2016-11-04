@@ -96,7 +96,8 @@
 (setq cider-prompt-for-symbol nil)
 (setq cider-prompt-for-project-on-connect nil)
 (setq nrepl-buffer-name-show-port t)
-(add-hook 'cider-mode-hook 'eldoc-mode)
+(add-hook 'cider-repl-mode-hook #'eldoc-mode)
+(add-hook 'cider-mode-hook #'eldoc-mode)
 
 
 ;; company
