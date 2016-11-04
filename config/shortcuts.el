@@ -132,7 +132,7 @@
 
 (define-key my-keys-minor-mode-map (kbd "C-M-q") 'clojure-align)
 (define-key my-keys-minor-mode-map (kbd "M-w") 'cljr-cycle-coll)
-(define-key my-keys-minor-mode-map (kbd "M-a") 'cljr-cycle-stringlike)
+(define-key my-keys-minor-mode-map (kbd "M-a") 'clojure-toggle-keyword-string)
 (define-key my-keys-minor-mode-map (kbd "M-e") 'cljr-thread)
 
 (define-minor-mode my-keys-minor-mode
