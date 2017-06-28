@@ -96,7 +96,8 @@
 (setq cider-prompt-for-symbol nil)
 (setq cider-prompt-for-project-on-connect nil)
 (setq nrepl-buffer-name-show-port t)
-(add-hook 'cider-mode-hook 'eldoc-mode)
+(add-hook 'cider-repl-mode-hook #'eldoc-mode)
+(add-hook 'cider-mode-hook #'eldoc-mode)
 
 
 ;; company
@@ -141,6 +142,7 @@
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"))
 (yas-global-mode 1)
+(setq yas-prompt-functions '(yas-x-prompt))
 
 
 ;; clj-refactor
