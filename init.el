@@ -66,7 +66,7 @@
          (y-or-n-p (&rest args) t))
     ad-do-it))
 
-
+(require 'subr-x)
 ;; Load custom config files
 (load "addons")
 (load "shortcuts")
