@@ -31,6 +31,7 @@
 (add-to-list 'auto-mode-alist '("\\.hiccup\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.edn\\'" . clojure-mode))
 (setq clojure-align-forms-automatically t)
+(add-hook 'clojure-mode-hook 'hs-minor-mode)
 (add-hook 'clojure-mode-hook
           (lambda ()
             (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\|spy\\)" 1
@@ -98,6 +99,9 @@
 (setq nrepl-buffer-name-show-port t)
 (add-hook 'cider-repl-mode-hook #'eldoc-mode)
 (add-hook 'cider-mode-hook #'eldoc-mode)
+
+(setq cider-repl-use-clojure-font-lock nil)
+
 
 
 ;; company

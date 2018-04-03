@@ -149,3 +149,8 @@
 (global-set-key (kbd "C-<kp-down>") 'paredit-forward-down)
 (global-set-key (kbd "C-<kp-prior>") 'beginning-of-buffer)
 (global-set-key (kbd "C-<kp-next>") 'end-of-buffer)
+
+(global-set-key (kbd "S-<left>") 'hs-hide-block)
+(global-set-key (kbd "S-<right>") 'hs-show-block)
+(global-set-key (kbd "S-<up>") 'hs-hide-all)
+(global-set-key (kbd "S-<down>") 'hs-show-all)
