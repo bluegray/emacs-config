@@ -40,25 +40,27 @@
 
 ;; Custom clojure indentation
 (define-clojure-indent
-  ;; om & om-tools indenting
-  (display-name 'defun)
-  (init-state 'defun)
-  (will-mount 'defun)
-  (did-mount 'defun)
-  (will-unmount 'defun)
-  (render 'defun)
-  (render-state 'defun)
-  (should-update 'defun)
-  (will-update 'defun)
-  (will-receive-props 'defun)
-  (did-update 'defun)
-  ;; prismatic plumbing
-  (for-map 'defun)
-  (letk 'defun)
   ;; compojure
   (context 'defun)
-  ;;
-  (let-programs 'defun))
+  (GET 'defun)
+  (POST 'defun)
+  ;; component
+  (start 'defun)
+  (stop 'defun)
+  (init 'defun)
+  (db 'defun)
+  (conn 'defun)
+  ;; datalog
+  (and-join 'defun)
+  (or-join 'defun)
+  (not-join 'defun)
+  ;; tufte
+  (tufte/p 'defun)
+  ;;re-frame
+  (rf/reg-event-db 'defun)
+  (rf/reg-event-fx 'defun)
+  (rf/reg-sub 'defun)
+  (rf/reg-fx 'defun))
 
 
 (defun clojure-maybe-compile-and-load-file ()
@@ -102,7 +104,26 @@
 
 (setq cider-repl-use-clojure-font-lock nil)
 
+(defun cider-figwheel-repl ()
+  (interactive)
+  (save-some-buffers)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(require 'figwheel-sidecar.repl-api)
+             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
+             (figwheel-sidecar.repl-api/cljs-repl)")
+    (cider-repl-return)))
+(global-set-key (kbd "C-c C-f") #'cider-figwheel-repl)
 
+(defun user/cider-send-to-repl ()
+  (interactive)
+  (let ((s (buffer-substring-no-properties
+            (nth 0 (cider-last-sexp 'bounds))
+            (nth 1 (cider-last-sexp 'bounds)))))
+    (with-current-buffer (cider-current-connection)
+      (insert s)
+      (cider-repl-return))))
+(global-set-key (kbd "C-c C-j") #'user/cider-send-to-repl)
 
 ;; company
 ;;(require 'company)

@@ -55,6 +55,8 @@
 
 (global-set-key (kbd "C-S-i") 'cider-inspect-last-result)
 
+(global-set-key (kbd "C-S-c") 'cider-connection-browser)
+
 (eval-after-load "cider"
   '(define-key cider-mode-map (kbd "C-x C-d") 'ac-cider-popup-doc))
 (eval-after-load "cider"
@@ -154,3 +156,7 @@
 (global-set-key (kbd "S-<right>") 'hs-show-block)
 (global-set-key (kbd "S-<up>") 'hs-hide-all)
 (global-set-key (kbd "S-<down>") 'hs-show-all)
+
+
+;; ediff
+(global-set-key (kbd "C-c C-g") 'vc-resolve-conflicts)

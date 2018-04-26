@@ -29,6 +29,12 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 
+;; ediff
+(setq ediff-split-window-function (if (> (frame-width) 150)
+                                      'split-window-horizontally
+                                      'split-window-vertically))
+
+
 ;; IDO options
 (setq ido-decorations     ; Make ido-mode display vertically
       (quote
