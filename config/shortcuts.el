@@ -39,14 +39,14 @@
 
 
 ;; cider
-(defun new-cider-server-lrh () (interactive) (cider-connect "localhost" 9991))
+(defun new-cider-local-repl () (interactive) (cider-connect '(:host "localhost"  :port 9991)))
+(defun new-cider-tunnel-repl () (interactive) (cider-connect '(:host "localhost"  :port 7888)))
 (defun new-cider-ssh-remote-repl () (interactive) (cider-connect "localhost" 9995))
-(defun new-cider-server-repl () (interactive) (cider-connect "localhost" 7888))
 (defun new-cider-bluegray-repl () (interactive) (cider-connect "localhost" 5656))
 
-(global-set-key (kbd "<f9>")  'new-cider-server-lrh)
+(global-set-key (kbd "<f9>")  'new-cider-local-repl)
+(global-set-key (kbd "S-C-M-<f9>") 'new-cider-tunnel-repl)
 (global-set-key (kbd "M-<f9>") 'new-cider-ssh-remote-repl)
-(global-set-key (kbd "S-C-M-<f9>") 'new-cider-server-repl)
 (global-set-key (kbd "M-<f10>") 'new-cider-bluegray-repl)
 
 (global-set-key (kbd "<f10>")  'cider-connect)

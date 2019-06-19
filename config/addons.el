@@ -102,6 +102,10 @@
 (setq nrepl-buffer-name-show-port t)
 (add-hook 'cider-repl-mode-hook #'eldoc-mode)
 (add-hook 'cider-mode-hook #'eldoc-mode)
+(setq cider-known-endpoints
+      '(("local"      "127.0.0.1" "9991")
+        ("staging"    "127.0.0.1" "9995")
+        ("production" "127.0.0.1" "9995")))
 
 (setq cider-repl-use-clojure-font-lock nil)
 
