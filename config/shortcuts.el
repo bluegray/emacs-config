@@ -160,3 +160,13 @@
 
 ;; ediff
 (global-set-key (kbd "C-c C-g") 'vc-resolve-conflicts)
+
+
+(defun indent-map (start end)
+  (interactive "r")
+    (replace-regexp ",[[:space:]]" "\n" nil start end)
+    (replace-regexp ":items[[:space:]]" ":items\n" nil start end)
+    (replace-regexp "}[[:space:]]{" "}\n\n{" nil start end)
+    (paredit-reindent-defun))
+
+(global-set-key (kbd "C-M-m") 'indent-map)

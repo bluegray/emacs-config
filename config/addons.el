@@ -17,6 +17,7 @@
           (lambda ()
             (paredit-mode 1)))
 
+
 (show-paren-mode 1)
 (require 'highlight-parentheses)
 (define-globalized-minor-mode global-highlight-parentheses-mode highlight-parentheses-mode
@@ -182,6 +183,27 @@
 (setq cljr-favor-prefix-notation nil)
 
 
+;; SCSS Mode
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(add-hook 'scss-mode-hook
+          (lambda ()
+            (paredit-mode 1)))
+
+(defun my-electric-brace (arg)
+  "Automatically add a closing '}' for every '{' inserted."
+  (interactive "*P")
+  (let ((count (prefix-numeric-value arg)))
+    (self-insert-command count)
+    (save-excursion
+      (insert-char ?} count))))
+
+(defun my-scss-mode-hook ()
+  (local-set-key (kbd "{") 'my-electric-brace))
+
+(add-hook 'scss-mode-hook 'my-scss-mode-hook)
+
+
 ;; More addons
 (require 'align-cljlet)
 ;;(require 'magit)
@@ -190,3 +212,19 @@
 
 ;;floobits
 (require 'floobits)
+
+
+;; flycheck
+
+(require 'flycheck)
+(require 'flycheck-joker)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+;;devdocs-lookup
+(require 'devdocs-lookup)
+(require 'key-chord)
+(devdocs-setup)
+(global-set-key (kbd "C-h C-c") #'devdocs-lookup-clojure)
+(key-chord-mode 1)
+(key-chord-define-global "??" 'devdocs-lookup-clojure)

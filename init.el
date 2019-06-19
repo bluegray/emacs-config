@@ -23,6 +23,7 @@
 (setq-default indent-tabs-mode nil)
 (setq global-tab-width 2)
 (setq css-indent-offset 2)
+(setq-default fill-column 80)
 
 
 ;; Save Hooks
