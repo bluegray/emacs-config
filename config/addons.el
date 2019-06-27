@@ -131,17 +131,17 @@
 (global-set-key (kbd "C-c C-j") #'user/cider-send-to-repl)
 
 ;; company
-;;(require 'company)
-;;(add-hook 'after-init-hook 'global-company-mode)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
 
 
 ;; ac-cider
-(require 'ac-cider)
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
-(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-repl-mode))
+;;(require 'ac-cider)
+;;(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+;;(add-hook 'cider-mode-hook 'ac-cider-setup)
+;;(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+;;(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-mode))
+;;(eval-after-load "auto-complete" '(add-to-list 'ac-modes 'cider-repl-mode))
 
 
 ;; auto complete
