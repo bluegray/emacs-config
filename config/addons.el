@@ -222,8 +222,17 @@
 
 (require 'flycheck)
 (require 'flycheck-joker)
+(require 'flycheck-clj-kondo)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+(dolist (checker '(clj-kondo-clj clj-kondo-cljs clj-kondo-cljc clj-kondo-edn))
+  (setq flycheck-checkers (cons checker (delq checker flycheck-checkers))))
+
+(dolist (checkers '((clj-kondo-clj . clojure-joker)
+                    (clj-kondo-cljs . clojurescript-joker)
+                    (clj-kondo-cljc . clojure-joker)
+                    (clj-kondo-edn . edn-joker)))
+  (flycheck-add-next-checker (car checkers) (cons 'error (cdr checkers))))
 
 ;;devdocs-lookup
 (require 'devdocs-lookup)

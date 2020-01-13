@@ -106,6 +106,10 @@
  '(nrepl-host "localhost")
  '(nrepl-port "9991")
  '(package-selected-packages (quote (cider)))
+ '(safe-local-variable-values
+   (quote
+    ((cider-ns-refresh-after-fn . "cognician.server-daemon/start-web")
+     (cider-ns-refresh-before-fn . "cognician.server-daemon/stop-web"))))
  '(tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 88 96 104 112 120))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
