@@ -67,7 +67,7 @@
 (defun clojure-maybe-compile-and-load-file ()
   "Call function 'cider-load-buffer' for clojure files.
    Meant to be used in `after-save-hook'."
-  (when (and (eq major-mode 'clojure-mode)
+  (when (and (or (eq major-mode 'clojurec-mode) (eq major-mode 'clojure-mode))
              (not (string-match ".*\\(project\\|profiles\\)\.clj$" buffer-file-name))
              (not (string-match "^.*\.cljs$" buffer-file-name)))
     (cider-load-buffer)))

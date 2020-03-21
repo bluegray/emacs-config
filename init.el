@@ -39,6 +39,7 @@
 (setq global-tab-width 2)
 (setq css-indent-offset 2)
 (setq-default fill-column 80)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 
 ;; Save Hooks
