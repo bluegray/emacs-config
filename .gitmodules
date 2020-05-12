@@ -119,24 +119,12 @@
 
   [submodule "plugins/company-mode"]
 	path = plugins/company-mode
-  url = git@github.com:company-mode/company-mode.git
+	url = git@github.com:company-mode/company-mode.git
 
-
-  [submodule "plugins/devdocs-lookup"]
-	path = plugins/devdocs-lookup
-  url = git@github.com:skeeto/devdocs-lookup.git
 
     [submodule "plugins/flycheck"]
 	path = plugins/flycheck
-  url = git@github.com:flycheck/flycheck.git
-
-    [submodule "plugins/flycheck-clj-kondo"]
-	path = plugins/flycheck-clj-kondo
-  url = git@github.com:borkdude/flycheck-clj-kondo.git
-
-    [submodule "plugins/flycheck-joker"]
-	path = plugins/flycheck-joker
-  url = git@github.com:candid82/flycheck-joker.git
+	url = git@github.com:flycheck/flycheck.git
 
     [submodule "plugins/scss-mode"]
 	path = plugins/scss-mode
@@ -152,3 +140,12 @@
 [submodule "plugins/squiggly-clojure"]
 	path = plugins/squiggly-clojure
 	url = git@github.com:clojure-emacs/squiggly-clojure.git
+[submodule "plugins/flycheck-joker"]
+	path = plugins/flycheck-joker
+	url = git@github.com:candid82/flycheck-joker.git
+[submodule "plugins/flycheck-clj-kondo"]
+	path = plugins/flycheck-clj-kondo
+	url = git@github.com:borkdude/flycheck-clj-kondo.git
+[submodule "plugins/devdocs-lookup"]
+	path = plugins/devdocs-lookup
+	url = git@github.com:skeeto/devdocs-lookup.git
