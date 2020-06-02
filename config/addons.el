@@ -108,6 +108,9 @@
         ("production" "127.0.0.1" "9995")))
 
 (setq cider-repl-use-clojure-font-lock nil)
+(setq cider-print-fn 'fipp)
+(setq cider-print-options '(("length"       30) ("right-margin" 50)
+                            ("print-length" 30) ("width"        50)))
 
 (defun cider-figwheel-repl ()
   (interactive)
