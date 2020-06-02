@@ -40,38 +40,37 @@
 [submodule "plugins/yasnippet"]
 	path = plugins/yasnippet
 	url = git@github.com:capitaomorte/yasnippet.git
-
-	[submodule "plugins/ert"]
-		path = plugins/ert
+[submodule "plugins/ert"]
+	path = plugins/ert
 	url = git://github.com/ohler/ert.git
-	[submodule "plugins/fuzzy-el"]
-		path = plugins/fuzzy-el
+[submodule "plugins/fuzzy-el"]
+	path = plugins/fuzzy-el
 	url = git://github.com/auto-complete/fuzzy-el.git
-	[submodule "plugins/auto-highlight-symbol"]
+[submodule "plugins/auto-highlight-symbol"]
 	path = plugins/auto-highlight-symbol
 	url = git@github.com:emacsmirror/auto-highlight-symbol.git
-	[submodule "plugins/emacs-git-gutter"]
+[submodule "plugins/emacs-git-gutter"]
 	path = plugins/emacs-git-gutter
 	url = git@github.com:syohex/emacs-git-gutter.git
-	[submodule "plugins/emacs-git-gutter-fringe"]
+[submodule "plugins/emacs-git-gutter-fringe"]
 	path = plugins/emacs-git-gutter-fringe
 	url = git@github.com:syohex/emacs-git-gutter-fringe
-	[submodule "plugins/emacs-powerline"]
-		path = plugins/emacs-powerline
+[submodule "plugins/emacs-powerline"]
+	path = plugins/emacs-powerline
 	url = git://github.com/jonathanchu/emacs-powerline.git
-	[submodule "plugins/git-emacs"]
+[submodule "plugins/git-emacs"]
 	path = plugins/git-emacs
 	url = git://github.com/tsgates/git-emacs.git
-	[submodule "plugins/git-modes"]
-		path = plugins/git-modes
+[submodule "plugins/git-modes"]
+	path = plugins/git-modes
 	url = git@github.com:magit/git-modes.git
-	[submodule "plugins/highlight-parentheses"]
+[submodule "plugins/highlight-parentheses"]
 	path = plugins/highlight-parentheses
 	url = git@github.com:nschum/highlight-parentheses.el.git
-	[submodule "plugins/projectile"]
+[submodule "plugins/projectile"]
 	path = plugins/projectile
 	url = git@github.com:bbatsov/projectile.git
-	[submodule "plugins/spinner"]
+[submodule "plugins/spinner"]
 	path = plugins/spinner
 	url = git@github.com:Malabarba/spinner.el.git
 [submodule "plugins/powerline"]
@@ -115,28 +114,19 @@
 	url = git://github.com/dnaumov/midje-mode.git
 [submodule "plugins/floobits"]
 	path = plugins/floobits
-  url = https://github.com/Floobits/floobits-emacs.git
-
-  [submodule "plugins/company-mode"]
+	url = https://github.com/Floobits/floobits-emacs.git
+[submodule "plugins/company-mode"]
 	path = plugins/company-mode
 	url = git@github.com:company-mode/company-mode.git
-
-
-    [submodule "plugins/flycheck"]
+[submodule "plugins/flycheck"]
 	path = plugins/flycheck
 	url = git@github.com:flycheck/flycheck.git
-
-    [submodule "plugins/scss-mode"]
+[submodule "plugins/scss-mode"]
 	path = plugins/scss-mode
-  url = git@github.com:antonj/scss-mode.git
-
-    [submodule "plugins/sesman"]
+	url = git@github.com:antonj/scss-mode.git
+[submodule "plugins/sesman"]
 	path = plugins/sesman
-  url = git@github.com:vspinu/sesman.git
-
-
-
-
+	url = git@github.com:vspinu/sesman.git
 [submodule "plugins/squiggly-clojure"]
 	path = plugins/squiggly-clojure
 	url = git@github.com:clojure-emacs/squiggly-clojure.git
